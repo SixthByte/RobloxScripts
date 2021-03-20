@@ -1,10 +1,10 @@
-local noclip = true -- Gets if you want the noclip
-char = game.Players.LocalPlayer.Character -- Gets your player
-while true do -- Make sure someone is in game
+local noclip = true
+char = game.Players.LocalPlayer.Character
+while true do
 if noclip == true then
 for _,v in pairs(char:children()) do
 pcall(function()
-if v.className == "Part" then
+if v.className == "MeshPart" then
 v.CanCollide = false
 end
 end)
