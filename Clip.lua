@@ -1,7 +1,7 @@
-local noclip = true
+local clip = true
 char = game.Players.LocalPlayer.Character
 while true do
-if noclip == true then
+if clip == true then
 for _,v in pairs(char:children()) do
 pcall(function()
 if v.className == "MeshPart" then
