@@ -1,14 +1,13 @@
-local noclip = true
-char = game.Players.LocalPlayer.Character
-while true do
-if noclip == true then
-for _,v in pairs(char:children()) do
-pcall(function()
-if v.className == "MeshPart" then
-v.CanCollide = false
-end
+Character = game.Players.LocalPlayer.Character
+game:GetService("RunService").Stepped:Connect(function()
+    Character.HumanoidRootPart.CanCollide = false
+    Character.Head.CanCollide = false
+    Character.UpperTorso.CanCollide = false
+    Character.LowerTorso.CanCollide = false
+    Character.LeftUpperArm.CanCollide = false
+    Character.LeftLowerArm.CanCollide = false
+    Character.LeftHand.CanCollide = false
+    Character.RightUpperArm.CanCollide = false
+    Character.RightLowerArm.CanCollide = false
+    Character.RightHand.CanCollide = false
 end)
-end
-end
-game:service("RunService").Stepped:wait()
-end
