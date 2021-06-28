@@ -45,7 +45,7 @@ function Library:CreateMain(Options)
 		BackgroundColor3 = Themes.Background,
 		BorderSizePixel = 0,
 		Position = UDim2.new(0.5, -400, 0.5, -225),
-		Size = UDim2.new(0, 700, 0, 460),
+		Size = UDim2.new(0, 550, 0, 450),
 	})
 
 	table.insert(Objects.Background, Main.Motherframe)
