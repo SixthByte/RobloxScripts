@@ -21,7 +21,7 @@ Image.Position = UDim2.new(-1.00641286, 0, -1.19648433, 0)
 Image.Size = UDim2.new(0, 300, 0, 300)
 Image.Image = "rbxassetid://6577862839"
 
-wait(1)
+wait(2.5)
 
 Image.ImageTransparency = 0.1
 wait(0.05)
