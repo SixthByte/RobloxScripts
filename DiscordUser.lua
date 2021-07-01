@@ -1,1 +1,1 @@
-WolfGod746#0001
+_G.Discord = "WolfGod746#0001"
