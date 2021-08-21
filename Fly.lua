@@ -4,14 +4,14 @@ local mouse = game.Players.LocalPlayer:GetMouse()
 repeat wait() until mouse
 local plr = game.Players.LocalPlayer 
 local torso = plr.Character.Head 
-local flying = false
+_G.flying = false
 local deb = true 
 local ctrl = {f = 0, b = 0, l = 0, r = 0} 
 local lastctrl = {f = 0, b = 0, l = 0, r = 0} 
 local maxspeed = 400 
 local speed = 5000 
 
-function Fly() 
+_G.TheFlyFunction = function Fly() 
 local bg = Instance.new("BodyGyro", torso) 
 bg.P = 9e4 
 bg.maxTorque = Vector3.new(9e9, 9e9, 9e9) 
@@ -41,7 +41,7 @@ else
 bv.velocity = Vector3.new(0,0.1,0) 
 end 
 bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame * CFrame.Angles(-math.rad((ctrl.f+ctrl.b)*50*speed/maxspeed),0,0) 
-until not flying 
+until not _G.flying 
 ctrl = {f = 0, b = 0, l = 0, r = 0} 
 lastctrl = {f = 0, b = 0, l = 0, r = 0} 
 speed = 0 
@@ -53,7 +53,7 @@ mouse.KeyDown:connect(function(key)
 if key:lower() == "f" then 
 if flying then flying = false 
 else 
-flying = true 
+_G.flying = true 
 Fly() 
 end 
 elseif key:lower() == "w" then 
@@ -77,4 +77,3 @@ elseif key:lower() == "d" then
 ctrl.r = 0 
 end 
 end)
-Fly()
