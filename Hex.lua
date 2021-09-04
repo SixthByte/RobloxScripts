@@ -1,6 +1,7 @@
 local StartupGui = Instance.new("ScreenGui")
 local ImageFrame = Instance.new("Frame")
 local Image = Instance.new("ImageLabel")
+local HexImage = getsynasset('https://i.imgur.com/OnQce5X.png')
 
 StartupGui.Name = "StartupGui"
 StartupGui.Parent = game.CoreGui
@@ -19,7 +20,7 @@ Image.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Image.BackgroundTransparency = 1.000
 Image.Position = UDim2.new(-1.00641286, 0, -1.19648433, 0)
 Image.Size = UDim2.new(0, 300, 0, 300)
-Image.Image = "rbxassetid://6577862839"
+Image.Image = "rbxassetid://"..HexImage
 
 wait(1.5)
 
