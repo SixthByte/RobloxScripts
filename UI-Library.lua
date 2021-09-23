@@ -1910,7 +1910,7 @@ function Library:CreateMain(Options)
 					Interactables.ColorpickerFrameBack = Library:Create("Frame", {
 						Name = "colorframe",
 						BackgroundTransparency = 1,
-						BackgroundColor3 = Color3.fromRGB(46, 46, 54),
+						BackgroundColor3 = Color3.fromRGB(15, 15, 22),
 						BorderSizePixel = 0,
 						Position = UDim2.new(1, 8, 0, 0),
 						Size = UDim2.new(0, 0, 0, 265),
