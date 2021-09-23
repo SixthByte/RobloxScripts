@@ -1918,7 +1918,7 @@ function Library:CreateMain(Options)
 
 					Interactables.ColorpickerFrame = Library:Create("Frame", {
 						Name = "MainFrame",
-						BackgroundColor3 = Color3.fromRGB(46, 46, 54),
+						BackgroundColor3 = Color3.fromRGB(15, 15, 22),
 						BorderSizePixel = 0,
 						Position = UDim2.new(0, 0, 0, 0),
 						Size = UDim2.new(0, 220, 0, 265),
@@ -1928,7 +1928,7 @@ function Library:CreateMain(Options)
 
 					Interactables.HuePicker = Library:Create("ImageButton", {
 						Name = "HuePicker",
-						BackgroundColor3 = Color3.fromRGB(46, 46, 54),
+						BackgroundColor3 = Color3.fromRGB(15, 15, 22),
 						BackgroundTransparency = 1.000,
 						BorderSizePixel = 0,
 						Position = UDim2.new(0, 190, 0, 20),
@@ -1939,13 +1939,13 @@ function Library:CreateMain(Options)
 
 					Interactables.Rounder = Library:Create("ImageLabel", {
 						Name = "Rounder",
-						BackgroundColor3 = Color3.fromRGB(46, 46, 54),
+						BackgroundColor3 = Color3.fromRGB(15, 15, 22),
 						BackgroundTransparency = 1.000,
 						BorderColor3 = Color3.fromRGB(27, 42, 53),
 						BorderSizePixel = 0,
 						Size = UDim2.new(1, 0, 1, 0),
 						Image = "rbxassetid://4695575676",
-						ImageColor3 = Color3.fromRGB(46, 46, 54),
+						ImageColor3 = Color3.fromRGB(15, 15, 22),
 						ScaleType = Enum.ScaleType.Slice,
 						SliceCenter = Rect.new(128, 128, 128, 128),
 						SliceScale = 0.040,
