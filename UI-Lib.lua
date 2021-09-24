@@ -73,8 +73,8 @@ function Library:CreateMain(Options)
 	end)
 	
 	local BackdropShadow = Instance.new("ImageLabel")
-	BackdropShadow.Name = "Frame"
-	BackdropShadow.Parent = Frame
+	BackdropShadow.Name = "Backdrop"
+	BackdropShadow.Parent = Motherframe
 	BackdropShadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	BackdropShadow.BackgroundTransparency = 1.000
 	BackdropShadow.Size = UDim2.new(0, 541, 0, 448)
