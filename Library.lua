@@ -33,7 +33,9 @@ function Library:CreateMain(Options)
 	local nameforcheck = Options.projName
 	local Main = {}
 	local firstCategory = true
-  local Shadow = Instance.new("ImageLabel")
+  	local Shadow1 = Instance.new("ImageLabel")
+	local Shadow2 = Instance.new("ImageLabel")
+	local Shadow3 = Instance.new("ImageLabel")
 
 	Main.Screengui = Library:Create("ScreenGui", {
 		Name = Options.projName,
@@ -49,17 +51,41 @@ function Library:CreateMain(Options)
 		Size = UDim2.new(0, 534, 0, 440),
 	})
   
-  Shadow.Name = "Shadow"
-  Shadow.Parent = Main.Motherframe
-  Shadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-  Shadow.BackgroundTransparency = 1.000
-  Shadow.Position = UDim2.new(-0.0280898884, 0, -0.0340909101, 0)
-  Shadow.Size = UDim2.new(1, 30, 1, 30)
-  Shadow.ZIndex = 0
-  Shadow.Image = "rbxassetid://5028857084"
-  Shadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
-  Shadow.ScaleType = Enum.ScaleType.Slice
-  Shadow.SliceCenter = Rect.new(24, 24, 276, 276)
+  	Shadow1.Name = "Shadow1"
+  	Shadow1.Parent = Main.Motherframe
+  	Shadow1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  	Shadow1.BackgroundTransparency = 1.000
+  	Shadow1.Position = UDim2.new(-0.0280898884, 0, -0.0340909101, 0)
+  	Shadow1.Size = UDim2.new(1, 30, 1, 30)
+  	Shadow1.ZIndex = 0
+  	Shadow1.Image = "rbxassetid://5028857084"
+  	Shadow1.ImageColor3 = Color3.fromRGB(0, 0, 0)
+  	Shadow1.ScaleType = Enum.ScaleType.Slice
+  	Shadow1.SliceCenter = Rect.new(24, 24, 276, 276)
+	
+	Shadow2.Name = "Shadow2"
+  	Shadow2.Parent = Main.Motherframe
+  	Shadow2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  	Shadow2.BackgroundTransparency = 1.000
+  	Shadow2.Position = UDim2.new(-0.0280898884, 0, -0.0340909101, 0)
+  	Shadow2.Size = UDim2.new(1, 30, 1, 30)
+  	Shadow2.ZIndex = 0
+  	Shadow2.Image = "rbxassetid://5028857084"
+  	Shadow2.ImageColor3 = Color3.fromRGB(0, 0, 0)
+  	Shadow2.ScaleType = Enum.ScaleType.Slice
+  	Shadow2.SliceCenter = Rect.new(24, 24, 276, 276)
+	
+	Shadow3.Name = "Shadow3"
+  	Shadow3.Parent = Main.Motherframe
+  	Shadow3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  	Shadow3.BackgroundTransparency = 1.000
+  	Shadow3.Position = UDim2.new(-0.0280898884, 0, -0.0340909101, 0)
+  	Shadow3.Size = UDim2.new(1, 30, 1, 30)
+  	Shadow3.ZIndex = 0
+  	Shadow3.Image = "rbxassetid://5028857084"
+  	Shadow3.ImageColor3 = Color3.fromRGB(0, 0, 0)
+  	Shadow3.ScaleType = Enum.ScaleType.Slice
+  	Shadow3.SliceCenter = Rect.new(24, 24, 276, 276)
 
 	table.insert(Objects.Background, Main.Motherframe)
 
