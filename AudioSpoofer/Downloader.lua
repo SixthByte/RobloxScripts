@@ -14,6 +14,12 @@ local domains = [[.ac.ad.ae.aero.af.ag.ai.al.am.an.ao.aq.ar.arpa.as.asia.at.au
 local a = _G.URL:split("v=")
 local text = game:HttpGet("https://api.tubemp3.biz/audio/" .. a[#a])
 repeat wait() until text
+game.StarterGui:SetCore("SendNotification", {
+	Title = "Hex",
+	Text = "Got URL!",
+	Icon = "rbxassetid://7403270296",
+	Duration = 1.5
+})
 local tlds = {}
 for tld in domains:gmatch'%w+' do
 	tlds[tld] = true
@@ -31,12 +37,6 @@ do
 	then
 		finished[pos_start] = true
 		if string.match(url, "download") then
-			game.StarterGui:SetCore("SendNotification", {
-            			Title = "Hex",
-            			Text = "Got URL!",
-            			Icon = "rbxassetid://7403270296",
-            			Duration = 1.5
-            		})
 			_G.URL = url
 		end
 	end
