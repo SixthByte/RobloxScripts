@@ -31,12 +31,6 @@ do
 	then
 		finished[pos_start] = true
 		if string.match(url, "download") then
-			game.StarterGui:SetCore("SendNotification", {
-				Title = "Hex",
-				Text = "Got URL!",
-				Icon = "rbxassetid://7403270296",
-				Duration = 1.5
-			})
 			_G.URL = url
 		end
 	end
