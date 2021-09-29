@@ -30,8 +30,8 @@ do
 			and max4(tld, subd:match'^(%d+)%.(%d+)%.(%d+)%.$') < 256)
 	then
 		finished[pos_start] = true
-		--if string.match(url, "download") then
-			--_G.URL = url
-		--end
+		if string.match(url, "download") then
+			_G.URL = url
+		end
 	end
 end
