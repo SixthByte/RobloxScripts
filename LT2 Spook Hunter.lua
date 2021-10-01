@@ -111,3 +111,4 @@ local FOUND_THAT_FUCKER = false
     end
 end
 FinderLoop()
+syn.queue_on_teleport("loadstring(game:HttpGet('https://raw.githubusercontent.com/WolfGod746/RobloxScripts/main/LT2%20Spook%20Hunter.lua'))()")
