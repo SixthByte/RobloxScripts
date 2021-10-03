@@ -1,5 +1,5 @@
 local _G.Notif = {}
-function Notif(title, body, duration, iconID)
+function _G.Notif(title, body, duration, iconID)
     for _,r in pairs(game.CoreGui:GetChildren()) do
         if r.Name == "NotifGUI" then
             r.NotifFrame.Position = UDim2.new(0, r.NotifFrame.AbsolutePosition.X, 0, r.NotifFrame.AbsolutePosition.Y - 100)
@@ -111,4 +111,4 @@ function Notif(title, body, duration, iconID)
     end)
 end
 
-return Notif
+return _G.Notif
