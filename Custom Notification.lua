@@ -1,0 +1,109 @@
+local Notif = {}
+function Notif(title, body, duration, iconID) -- Example: Notif("Hex", "Hex Notification Example", 4, "rbxassetit://")
+    local NotifGUI = Instance.new("ScreenGui")
+    local NotifFrame = Instance.new("Frame")
+    local NotifBody = Instance.new("TextLabel")
+    local TitleFrame = Instance.new("Frame")
+    local NotifTitle = Instance.new("TextLabel")
+    local TitleImage = Instance.new("ImageLabel")
+    
+    NotifGUI.Name = "NotifGUI"
+    NotifGUI.Parent = game.CoreGui
+    NotifGUI.ZIndexBehavior = Enum.ZIndexBehavior.Global
+    
+    NotifFrame.Name = "NotifFrame"
+    NotifFrame.Parent = NotifGUI
+    NotifFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+    NotifFrame.BorderSizePixel = 0
+    NotifFrame.Position = UDim2.new(0.011805566, 0, 0.874112415, 0)
+    NotifFrame.Size = UDim2.new(0, 0, 0, 86) -- (0, 300, 0, 86)
+    
+    NotifBody.Name = "NotifBody"
+    NotifBody.Parent = NotifFrame
+    NotifBody.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+    NotifBody.BackgroundTransparency = 1.000
+    NotifBody.BorderSizePixel = 0
+    NotifBody.Position = UDim2.new(0.0233333334, 0, 0.383720934, 0)
+    NotifBody.Size = UDim2.new(0, 287, 0, 57)
+    NotifBody.SizeConstraint = Enum.SizeConstraint.RelativeYY
+    NotifBody.Font = Enum.Font.Gotham
+    NotifBody.Text = tostring(body)
+    NotifBody.TextColor3 = Color3.fromRGB(255, 255, 255)
+    NotifBody.TextSize = 16.000
+    NotifBody.TextWrapped = true
+    NotifBody.TextXAlignment = Enum.TextXAlignment.Left
+    NotifBody.TextYAlignment = Enum.TextYAlignment.Top
+    NotifBody.TextTransparency = 1
+    
+    TitleFrame.Name = "TitleFrame"
+    TitleFrame.Parent = NotifFrame
+    TitleFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+    TitleFrame.BorderSizePixel = 0
+    TitleFrame.Size = UDim2.new(0, 0, 0, 27) -- (0, 300, 0, 27)
+    
+    NotifTitle.Name = "NotifTitle"
+    NotifTitle.Parent = TitleFrame
+    NotifTitle.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+    NotifTitle.BackgroundTransparency = 1.000
+    NotifTitle.BorderSizePixel = 0
+    NotifTitle.Position = UDim2.new(0.0233333334, 0, 0, 0)
+    NotifTitle.Size = UDim2.new(0, 287, 0, 27)
+    NotifTitle.SizeConstraint = Enum.SizeConstraint.RelativeYY
+    NotifTitle.Font = Enum.Font.GothamSemibold
+    NotifTitle.Text = tostring(title)
+    NotifTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+    NotifTitle.TextSize = 20.000
+    NotifTitle.TextXAlignment = Enum.TextXAlignment.Left
+    NotifTitle.TextTransparency = 1
+    
+    TitleImage.Name = "TitleImage"
+    TitleImage.Parent = TitleFrame
+    TitleImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    TitleImage.BackgroundTransparency = 1.000
+    TitleImage.Position = UDim2.new(0.910000026, 0, 0, 0)
+    TitleImage.Size = UDim2.new(0, 27, 0, 27)
+    local IconImage = nil
+    if iconID == nil then
+        IconImage = "rbxassetid://7403270296"
+    else
+        IconImage = iconID
+    end
+    TitleImage.Image = IconImage
+    TitleImage.ImageTransparency = 1
+    
+    OpenBodyTween = game:GetService("TweenService"):Create(NotifFrame, TweenInfo.new(0.35), {Size = UDim2.new(0, 300, 0, 86)})
+    OpenTitleTween = game:GetService("TweenService"):Create(TitleFrame, TweenInfo.new(0.35), {Size = UDim2.new(0, 300, 0, 27)})
+    OpenBodyTween:Play()
+    OpenTitleTween:Play()
+    
+    OpenTitleTween.Completed:Connect(function()
+        wait(0.05)
+        for f = 1, 0, -0.1 do
+            NotifTitle.TextTransparency = f
+            NotifBody.TextTransparency = f
+            TitleImage.ImageTransparency = f
+            wait(0.01)
+        end
+    end)
+    
+    wait(tonumber(duration))
+    
+    for i = 0, 1, 0.1 do
+        NotifTitle.TextTransparency = i
+        NotifBody.TextTransparency = i
+        TitleImage.ImageTransparency = i
+        wait(0.01)
+    end
+    
+    wait(0.05)
+    
+    CloseBodyTween = game:GetService("TweenService"):Create(NotifFrame, TweenInfo.new(0.35), {Size = UDim2.new(0, 0, 0, 86)})
+    CloseTitleTween = game:GetService("TweenService"):Create(TitleFrame, TweenInfo.new(0.35), {Size = UDim2.new(0, 0, 0, 27)})
+    CloseBodyTween:Play()
+    CloseTitleTween:Play()
+    CloseTitleTween.Completed:Connect(function()
+        NotifGUI:Destroy()
+    end)
+end
+
+return Notif
