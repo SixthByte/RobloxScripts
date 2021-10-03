@@ -1,4 +1,4 @@
-local Notif = {}
+local _G.Notif = {}
 function Notif(title, body, duration, iconID)
     for _,r in pairs(game.CoreGui:GetChildren()) do
         if r.Name == "NotifGUI" then
