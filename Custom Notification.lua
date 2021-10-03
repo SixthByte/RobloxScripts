@@ -1,5 +1,10 @@
 local Notif = {}
-function Notif(title, body, duration, iconID) -- Example: Notif("Hex", "Hex Notification Example", 4, "rbxassetit://")
+function Notif(title, body, duration, iconID)
+    for _,r in pairs(game.CoreGui:GetChildren()) do
+        if r.Name == "NotifGUI" then
+            r.NotifFrame.Position = UDim2.new(0, r.NotifFrame.AbsolutePosition.X, 0, r.NotifFrame.AbsolutePosition.Y - 100)
+        end
+    end
     local NotifGUI = Instance.new("ScreenGui")
     local NotifFrame = Instance.new("Frame")
     local NotifBody = Instance.new("TextLabel")
