@@ -76,39 +76,33 @@ function Notif(title, body, duration, iconID)
     TitleImage.Image = IconImage
     TitleImage.ImageTransparency = 1
     
-    OpenBodyTween = game:GetService("TweenService"):Create(NotifFrame, TweenInfo.new(0.35), {Size = UDim2.new(0, 300, 0, 86)})
-    OpenTitleTween = game:GetService("TweenService"):Create(TitleFrame, TweenInfo.new(0.35), {Size = UDim2.new(0, 300, 0, 27)})
-    OpenBodyTween:Play()
-    OpenTitleTween:Play()
-    
-    OpenTitleTween.Completed:Connect(function()
-        wait(0.05)
-        for f = 1, 0, -0.1 do
-            NotifTitle.TextTransparency = f
-            NotifBody.TextTransparency = f
-            TitleImage.ImageTransparency = f
-            wait(0.01)
-        end
-    end)
-    
-    wait(tonumber(duration))
-    
-    for i = 0, 1, 0.1 do
-        NotifTitle.TextTransparency = i
+    for i = 1, 0, -0.2 do
+        NotifFrame.BackgroundTransparency = i
         NotifBody.TextTransparency = i
+        TitleFrame.BackgroundTransparency = i
+        NotifTitle.TextTransparency = i
         TitleImage.ImageTransparency = i
+        Shadow1.ImageTransparency = i
+        Shadow2.ImageTransparency = i
+        Shadow3.ImageTransparency = i
         wait(0.01)
     end
     
-    wait(0.05)
+    wait(tonumber(duration))
     
-    CloseBodyTween = game:GetService("TweenService"):Create(NotifFrame, TweenInfo.new(0.35), {Size = UDim2.new(0, 0, 0, 86)})
-    CloseTitleTween = game:GetService("TweenService"):Create(TitleFrame, TweenInfo.new(0.35), {Size = UDim2.new(0, 0, 0, 27)})
-    CloseBodyTween:Play()
-    CloseTitleTween:Play()
-    CloseTitleTween.Completed:Connect(function()
-        NotifGUI:Destroy()
-    end)
+    for i = 0, 1, 0.2 do
+        NotifFrame.BackgroundTransparency = i
+        NotifBody.TextTransparency = i
+        TitleFrame.BackgroundTransparency = i
+        NotifTitle.TextTransparency = i
+        TitleImage.ImageTransparency = i
+        Shadow1.ImageTransparency = i
+        Shadow2.ImageTransparency = i
+        Shadow3.ImageTransparency = i
+        wait(0.01)
+    end
+    
+    NotifGUI:Destroy()
 end
 
 return Notif
