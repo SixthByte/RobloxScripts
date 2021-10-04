@@ -24,7 +24,7 @@ function Notif(title, body, duration, iconID)
     NotifFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
     NotifFrame.BorderSizePixel = 0
     NotifFrame.Position = UDim2.new(0.011805566, 0, 0.874112415, 0)
-    NotifFrame.Size = UDim2.new(0, 0, 0, 86) -- (0, 300, 0, 86)
+    NotifFrame.Size = UDim2.new(0, 300, 0, 86) -- (0, 300, 0, 86)
     
     NotifBody.Name = "NotifBody"
     NotifBody.Parent = NotifFrame
@@ -47,7 +47,7 @@ function Notif(title, body, duration, iconID)
     TitleFrame.Parent = NotifFrame
     TitleFrame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
     TitleFrame.BorderSizePixel = 0
-    TitleFrame.Size = UDim2.new(0, 0, 0, 27) -- (0, 300, 0, 27)
+    TitleFrame.Size = UDim2.new(0, 300, 0, 27) -- (0, 300, 0, 27)
     
     NotifTitle.Name = "NotifTitle"
     NotifTitle.Parent = TitleFrame
