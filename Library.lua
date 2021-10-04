@@ -133,18 +133,17 @@ function Library:CreateMain(Options)
 		ScrollBarThickness = 0,
 	})
 	
-	if _G.DisplayHexLogo then
-		local HexLogo = Instance.new("ImageLabel")
-		HexLogo.Name = "Logo"
-  		HexLogo.Parent = Main.Sidebar
-  		HexLogo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-  		HexLogo.BackgroundTransparency = 1.000
-  		HexLogo.Position = UDim2.new(0, 5, 0, 370)
-  		HexLogo.Size = UDim2.new(0, 40, 0, 40)
-  		HexLogo.ZIndex = 1
-  		HexLogo.Image = "rbxassetid://7403270296"
-  		HexLogo.ImageColor3 = Color3.fromRGB(255, 255, 255)
-	end
+	--[[ * If uncommented, the Hex logo will appear and the bottom left corner *
+	local HexLogo = Instance.new("ImageLabel")
+	HexLogo.Name = "Logo"
+  	HexLogo.Parent = Main.Sidebar
+  	HexLogo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+  	HexLogo.BackgroundTransparency = 1.000
+  	HexLogo.Position = UDim2.new(0, 5, 0, 370)
+  	HexLogo.Size = UDim2.new(0, 40, 0, 40)
+  	HexLogo.ZIndex = 1
+  	HexLogo.Image = "rbxassetid://7403270296"
+  	HexLogo.ImageColor3 = Color3.fromRGB(255, 255, 255)]]
 
 	table.insert(Objects.GrayContrast, Main.Sidebar)
 
