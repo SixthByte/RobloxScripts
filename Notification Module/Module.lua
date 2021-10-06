@@ -270,7 +270,7 @@ function Notif(title, body, duration, iconID, mainbutton, button2, waituntilansw
     if iconID == nil then
         IconImage = "rbxassetid://7403270296"
     else
-        IconImage = iconID
+        IconImage = "rbxassetid://"..iconID
     end
     
     TitleImage.Image = IconImage
