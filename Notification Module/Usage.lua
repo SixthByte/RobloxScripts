@@ -12,7 +12,6 @@ Notif("1", "2", 3, 4)
 --------------
 
 -- Notification With Buttons
-title, body, duration, iconID, mainbutton, button2, waituntilanswer
 Notif("1", "2", 3, 4, "5", "6", 7, function()
     8
 end)
