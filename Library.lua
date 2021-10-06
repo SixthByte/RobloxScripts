@@ -58,7 +58,7 @@ function Library:CreateMain(Options)
   	Shadow1.Position = UDim2.new(-0.0280898884, 0, -0.0340909101, 0)
   	Shadow1.Size = UDim2.new(1, 30, 1, 30)
   	Shadow1.ZIndex = 0
-  	Shadow1.Image = "rbxassetid://5028857084"
+  	Shadow1.Image = "rbxassetid://7666162633"
   	Shadow1.ImageColor3 = Color3.fromRGB(0, 0, 0)
   	Shadow1.ScaleType = Enum.ScaleType.Slice
   	Shadow1.SliceCenter = Rect.new(24, 24, 276, 276)
@@ -70,7 +70,7 @@ function Library:CreateMain(Options)
   	Shadow2.Position = UDim2.new(-0.0280898884, 0, -0.0340909101, 0)
   	Shadow2.Size = UDim2.new(1, 30, 1, 30)
   	Shadow2.ZIndex = 0
-  	Shadow2.Image = "rbxassetid://5028857084"
+  	Shadow2.Image = "rbxassetid://7666162633"
   	Shadow2.ImageColor3 = Color3.fromRGB(0, 0, 0)
   	Shadow2.ScaleType = Enum.ScaleType.Slice
   	Shadow2.SliceCenter = Rect.new(24, 24, 276, 276)
@@ -82,7 +82,7 @@ function Library:CreateMain(Options)
   	Shadow3.Position = UDim2.new(-0.0280898884, 0, -0.0340909101, 0)
   	Shadow3.Size = UDim2.new(1, 30, 1, 30)
   	Shadow3.ZIndex = 0
-  	Shadow3.Image = "rbxassetid://5028857084"
+  	Shadow3.Image = "rbxassetid://7666162633"
   	Shadow3.ImageColor3 = Color3.fromRGB(0, 0, 0)
   	Shadow3.ScaleType = Enum.ScaleType.Slice
   	Shadow3.SliceCenter = Rect.new(24, 24, 276, 276)
@@ -1983,7 +1983,7 @@ function Library:CreateMain(Options)
 						Position = UDim2.new(0, 190, 0, 20),
 						Size = UDim2.new(0, 10, 0, 150),
 						ZIndex = 2,
-						Image = "http://www.roblox.com/asset/?id=5118428654",
+						Image = "http://www.roblox.com/asset/?id=7666159158",
 					})
 
 					Interactables.Rounder = Library:Create("ImageLabel", {
