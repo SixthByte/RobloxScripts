@@ -47,20 +47,20 @@ function Notif(title, body, duration, iconID, mainbutton, button2, waituntilansw
     ButtonFrame.Size = UDim2.new(0, 91, 0, 86)
     ButtonFrame.Position = UDim2.new(1.02999997, 0, 0, 0)
     
-	function Appear()
-    	for i = 1, 0, -0.2 do
-            NotifFrame.BackgroundTransparency = i
-            NotifBody.TextTransparency = i
-            TitleFrame.BackgroundTransparency = i
-            NotifTitle.TextTransparency = i
-            TitleImage.ImageTransparency = i
-            Shadow1.ImageTransparency = i
-            Shadow2.ImageTransparency = i
-            Shadow3.ImageTransparency = i
-            wait(0.01)
-    	end
-	end
-    function RemoveHexNotif()
+	--[[function Appear()
+	    for i = 1, 0, -0.2 do
+		NotifFrame.BackgroundTransparency = i
+		NotifBody.TextTransparency = i
+		TitleFrame.BackgroundTransparency = i
+		NotifTitle.TextTransparency = i
+		TitleImage.ImageTransparency = i
+		Shadow1.ImageTransparency = i
+		Shadow2.ImageTransparency = i
+		Shadow3.ImageTransparency = i
+		wait(0.01)
+	    end
+	end]]
+    --[[function RemoveHexNotif()
         for i = 0, 1, 0.2 do
             if Button1 ~= nil then
                 Button1.Visible = false
@@ -77,7 +77,7 @@ function Notif(title, body, duration, iconID, mainbutton, button2, waituntilansw
             wait(0.05)
         end
         NotifGUI:Destroy()
-    end
+    end]]
     
     if mainbutton ~= nil then
   	    local Button1 = Instance.new("TextButton")
@@ -137,7 +137,21 @@ function Notif(title, body, duration, iconID, mainbutton, button2, waituntilansw
             if callback then
                 callback()
             end
-            RemoveHexNotif()
+            for i = 0, 1, 0.2 do
+            	if Button1 ~= nil then
+                    Button1.Visible = false
+            	end
+            	NotifFrame.BackgroundTransparency = i
+            	NotifBody.TextTransparency = i
+            	TitleFrame.BackgroundTransparency = i
+            	NotifTitle.TextTransparency = i
+            	TitleImage.ImageTransparency = i
+            	Shadow1.ImageTransparency = i
+            	Shadow2.ImageTransparency = i
+            	Shadow3.ImageTransparency = i
+            	ButtonFrame:Destroy()
+            	wait(0.05)
+            end
         end)
   	end
 
@@ -181,7 +195,21 @@ function Notif(title, body, duration, iconID, mainbutton, button2, waituntilansw
       	Button2Shadow2.SliceCenter = Rect.new(24, 24, 276, 276)
     	
     	Button2.MouseButton1Down:Connect(function()
-            RemoveHexNotif()
+            for i = 0, 1, 0.2 do
+            	if Button1 ~= nil then
+                    Button1.Visible = false
+            	end
+            	NotifFrame.BackgroundTransparency = i
+            	NotifBody.TextTransparency = i
+            	TitleFrame.BackgroundTransparency = i
+            	NotifTitle.TextTransparency = i
+            	TitleImage.ImageTransparency = i
+            	Shadow1.ImageTransparency = i
+            	Shadow2.ImageTransparency = i
+            	Shadow3.ImageTransparency = i
+            	ButtonFrame:Destroy()
+            	wait(0.05)
+            end
         end)
     end
     
@@ -276,11 +304,35 @@ function Notif(title, body, duration, iconID, mainbutton, button2, waituntilansw
     TitleImage.Image = IconImage
     TitleImage.ImageTransparency = 1
     
-    Appear()
+    	for i = 1, 0, -0.2 do
+		NotifFrame.BackgroundTransparency = i
+		NotifBody.TextTransparency = i
+		TitleFrame.BackgroundTransparency = i
+		NotifTitle.TextTransparency = i
+		TitleImage.ImageTransparency = i
+		Shadow1.ImageTransparency = i
+		Shadow2.ImageTransparency = i
+		Shadow3.ImageTransparency = i
+		wait(0.01)
+	end
     
     if waituntilanswer ~= true then
         wait(tonumber(duration))
-        RemoveHexNotif()
+        for i = 0, 1, 0.2 do
+            if Button1 ~= nil then
+                Button1.Visible = false
+            end
+            NotifFrame.BackgroundTransparency = i
+            NotifBody.TextTransparency = i
+            TitleFrame.BackgroundTransparency = i
+            NotifTitle.TextTransparency = i
+            TitleImage.ImageTransparency = i
+            Shadow1.ImageTransparency = i
+            Shadow2.ImageTransparency = i
+            Shadow3.ImageTransparency = i
+            ButtonFrame:Destroy()
+            wait(0.05)
+        end
     end
 end
 
