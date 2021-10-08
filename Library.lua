@@ -735,8 +735,8 @@ function Library:CreateMain(Options)
 					local Text
 					local PlaceHolderText
 					if Options then 
-						if Options.text then 
-							PlaceHolderText = Options.text
+						if Options.placeholder then 
+							PlaceHolderText = Options.placeholder
 						end
 					end
 
@@ -792,7 +792,7 @@ function Library:CreateMain(Options)
 						Position = UDim2.new(0.0500000007, 0, 0.0384615399, 0),
 						Size = UDim2.new(0.920000017, 0, 0, 23),
 						Font = Enum.Font.GothamBold,
-						PlaceholderText = PlaceHolderText or "Text",
+						PlaceholderText = PlaceHolderText,
 						Text = "",
 						TextColor3 = Themes.TextColor,
 						TextSize = 14.000,
