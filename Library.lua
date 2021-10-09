@@ -127,8 +127,8 @@ function Library:CreateMain(Options)
 		Active = true,
 		BackgroundColor3 = Themes.GrayContrast,
 		BorderSizePixel = 0,
-		Position = UDim2.new(0, 0, 0.00899999309, 0),
-		Size = UDim2.new(0.214041099, 0, 0.991376221, 0),
+		Position = UDim2.new(0, 0, 0, 0), --Position = UDim2.new(0, 0, 0.00899999309, 0)
+		Size = UDim2.new(0.214041099, 0, 1, 0), --Size = UDim2.new(0.214041099, 0, 0.991376221, 0)
 		CanvasSize = UDim2.new(0, 0, 0, 15),
 		ScrollBarThickness = 0,
 	})
