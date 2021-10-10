@@ -149,7 +149,7 @@ local numbers = function(string)
     return A
 end
 
-m.highlight_source = function(type, Source, Lines)
+m.highlight_source = function(type, Source)
 	if type == "Text" then
 		Source.Text = Source.Text:gsub("\13", "")
 		Source.Text = Source.Text:gsub("\t", "      ")
