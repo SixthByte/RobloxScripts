@@ -410,11 +410,10 @@ Checker = game:GetService'RunService'.RenderStepped:connect(function()
     Source.Size = UDim2.new(0, NextXSize, 0, NextYSize)
 end)
 
-local m = loadstring(game:HttpGet("https://raw.githubusercontent.com/WolfGod746/RobloxScripts/ExecutorFrame/Executor%20Colors%20Module.lua"))()
+local m = loadstring(game:HttpGet("https://raw.githubusercontent.com/WolfGod746/RobloxScripts/main/Executor%20Colors%20Module.lua"))()
 
 Source:GetPropertyChangedSignal("Text"):Connect(function()
     if Highlights then
 	    m.highlight_source("Text", Executor.ExecutorFrame.EditorFrame.Source, Executor.ExecutorFrame.EditorFrame.Lines)
     end
 end)
-print("Executor Loaded.")
