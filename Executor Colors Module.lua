@@ -149,7 +149,7 @@ local numbers = function(string)
     return A
 end
 
-m.highlight_source = function(type, Source)
+m.highlight_source = function(type, Source, Lines)
 	if type == "Text" then
 		Source.Text = Source.Text:gsub("\13", "")
 		Source.Text = Source.Text:gsub("\t", "      ")
@@ -160,6 +160,14 @@ m.highlight_source = function(type, Source)
 		Source.Tokens_.Text = hTokens(s)
 		Source.Numbers_.Text = numbers(s)
 		Source.Strings_.Text = strings(s)
+		local lin = 1
+		s:gsub("\n", function()
+			lin = lin + 1
+		end)
+		Lines.Text = ""
+		for i = 1, lin do
+			Lines.Text = Lines.Text .. i .. "\n"
+		end
 	end
 end
 
