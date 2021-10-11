@@ -1,7 +1,7 @@
 local Highlights = true
 
 local Executor = Instance.new("ScreenGui")
-local Main = Instance.new("Frame")
+local ExecutorFrame = Instance.new("Frame")
 local Execute = Instance.new("TextButton")
 local Clear = Instance.new("TextButton")
 local Source = Instance.new("TextBox")
@@ -29,17 +29,17 @@ Executor.Name = "Executor"
 Executor.Parent = game.CoreGui
 Executor.ZIndexBehavior = Enum.ZIndexBehavior.Global
 
-Main.Name = "Main"
-Main.Parent = Executor
-Main.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
-Main.BorderSizePixel = 0
-Main.Position = UDim2.new(0.456249982, 0, 0.210323155, 0)
-Main.Size = UDim2.new(0, 721, 0, 425)
-Main.Active = true
-Main.Draggable = true
+ExecutorFrame.Name = "ExecutorFrame"
+ExecutorFrame.Parent = Executor
+ExecutorFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+ExecutorFrame.BorderSizePixel = 0
+ExecutorFrame.Position = UDim2.new(0.456249982, 0, 0.210323155, 0)
+ExecutorFrame.Size = UDim2.new(0, 721, 0, 425)
+ExecutorFrame.Active = true
+ExecutorFrame.Draggable = true
 
 Execute.Name = "Execute"
-Execute.Parent = Main
+Execute.Parent = ExecutorFrame
 Execute.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 Execute.BorderSizePixel = 0
 Execute.Position = UDim2.new(0.0152565883, 0, 0.887058794, 0)
@@ -50,7 +50,7 @@ Execute.TextColor3 = Color3.fromRGB(255, 255, 255)
 Execute.TextSize = 14.000
 
 Clear.Name = "Clear"
-Clear.Parent = Main
+Clear.Parent = ExecutorFrame
 Clear.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 Clear.BorderSizePixel = 0
 Clear.Position = UDim2.new(0.1702565883, 0, 0.887058794, 0)
@@ -65,7 +65,7 @@ if isfolder("HexExecutor") ~= true then
 end
 
 ScriptBox.Name = "ScriptBox"
-ScriptBox.Parent = Main
+ScriptBox.Parent = ExecutorFrame
 ScriptBox.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 ScriptBox.BorderSizePixel = 0
 ScriptBox.Position = UDim2.new(0.73652565883, 0, 0.887058794, 0)
@@ -78,7 +78,7 @@ ScriptBox.Text = ""
 ScriptBox.TextTruncate = Enum.TextTruncate.AtEnd
 
 Load.Name = "Load"
-Load.Parent = Main
+Load.Parent = ExecutorFrame
 Load.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 Load.BorderSizePixel = 0
 Load.Position = UDim2.new(0.43752565883, 0, 0.887058794, 0)
@@ -89,7 +89,7 @@ Load.TextColor3 = Color3.fromRGB(255, 255, 255)
 Load.TextSize = 14.000
 
 Save.Name = "Save"
-Save.Parent = Main
+Save.Parent = ExecutorFrame
 Save.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 Save.BorderSizePixel = 0
 Save.Position = UDim2.new(0.58652565883, 0, 0.887058794, 0)
@@ -100,7 +100,7 @@ Save.TextColor3 = Color3.fromRGB(255, 255, 255)
 Save.TextSize = 14.000
 
 EditorFrame.Name = "EditorFrame"
-EditorFrame.Parent = Main
+EditorFrame.Parent = ExecutorFrame
 EditorFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 EditorFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 EditorFrame.BorderSizePixel = 0
@@ -220,7 +220,7 @@ Numbers_.TextXAlignment = Enum.TextXAlignment.Left
 Numbers_.TextYAlignment = Enum.TextYAlignment.Top
 
 Title.Name = "Title"
-Title.Parent = Main
+Title.Parent = ExecutorFrame
 Title.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 Title.BorderSizePixel = 0
 Title.Size = UDim2.new(0, 721, 0, 37)
@@ -230,7 +230,7 @@ Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextSize = 15.000
 
 Logo.Name = "Logo"
-Logo.Parent = Main
+Logo.Parent = ExecutorFrame
 Logo.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 Logo.BackgroundTransparency = 1.000
 Logo.BorderSizePixel = 0
@@ -239,7 +239,7 @@ Logo.Size = UDim2.new(0, 34, 0, 34)
 Logo.Image = "rbxassetid://7403270296"
 
 Minimize.Name = "Minimize"
-Minimize.Parent = Main
+Minimize.Parent = ExecutorFrame
 Minimize.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 Minimize.BorderSizePixel = 0
 Minimize.Text = "-"
@@ -263,7 +263,7 @@ Lines.TextWrapped = true
 Lines.TextYAlignment = Enum.TextYAlignment.Top
 
 Shadow1.Name = "Shadow1"
-Shadow1.Parent = Main
+Shadow1.Parent = ExecutorFrame
 Shadow1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Shadow1.BackgroundTransparency = 1.000
 Shadow1.Position = UDim2.new(-0.0280898884, 0, -0.0460909101, 0)
@@ -275,7 +275,7 @@ Shadow1.ScaleType = Enum.ScaleType.Slice
 Shadow1.SliceCenter = Rect.new(24, 24, 276, 276)
 
 Shadow2.Name = "Shadow2"
-Shadow2.Parent = Main
+Shadow2.Parent = ExecutorFrame
 Shadow2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Shadow2.BackgroundTransparency = 1.000
 Shadow2.Position = UDim2.new(-0.0280898884, 0, -0.0460909101, 0)
@@ -287,7 +287,7 @@ Shadow2.ScaleType = Enum.ScaleType.Slice
 Shadow2.SliceCenter = Rect.new(24, 24, 276, 276)
 
 Shadow3.Name = "Shadow3"
-Shadow3.Parent = Main
+Shadow3.Parent = ExecutorFrame
 Shadow3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Shadow3.BackgroundTransparency = 1.000
 Shadow3.Position = UDim2.new(-0.0280898884, 0, -0.0460909101, 0)
@@ -300,7 +300,7 @@ Shadow3.SliceCenter = Rect.new(24, 24, 276, 276)
 
 BlackOut.Name = "BlackOut"
 BlackOut.BackgroundColor3 = Color3.new(0, 0, 0)
-BlackOut.Parent = Main
+BlackOut.Parent = ExecutorFrame
 BlackOut.ZIndex = 9
 BlackOut.Size = UDim2.new(-1, 0, 0, 0)
 BlackOut.Position = UDim2.new(1, 0, 0, 0)
@@ -324,7 +324,7 @@ Load.MouseButton1Click:Connect(function()
 	end
 end)
 Executor.Enabled = false
-Main.Visible = false
+ExecutorFrame.Visible = false
 Execute.Visible = false
 Clear.Visible = false
 ScriptBox.Visible = false
@@ -335,11 +335,11 @@ Title.Visible = false
 Logo.Visible = false
 CloseBlack = game:GetService("TweenService"):Create(BlackOut, TweenInfo.new(0.2), {Size = UDim2.new(-1, 0, 1, 0)})
 OpenBlack = game:GetService("TweenService"):Create(BlackOut, TweenInfo.new(0.2), {Size = UDim2.new(-1, 0, 0, 0)})
-CloseTween = game:GetService("TweenService"):Create(Main, TweenInfo.new(0.2), {Size = UDim2.new(0, 721, 0, 0)})
-OpenTween = game:GetService("TweenService"):Create(Main, TweenInfo.new(0.2), {Size = UDim2.new(0, 721, 0, 425)})
+CloseTween = game:GetService("TweenService"):Create(ExecutorFrame, TweenInfo.new(0.2), {Size = UDim2.new(0, 721, 0, 0)})
+OpenTween = game:GetService("TweenService"):Create(ExecutorFrame, TweenInfo.new(0.2), {Size = UDim2.new(0, 721, 0, 425)})
 function _G.OpenExecutor()
     Executor.Enabled = true
-    Main.Visible = true
+    ExecutorFrame.Visible = true
     OpenTween:Play()
 end
 function _G.CloseExecutor()
@@ -368,7 +368,7 @@ CloseBlack.Completed:Connect(function()
 end)
 CloseTween.Completed:Connect(function()
     Executor.Enabled = false
-    Main.Visible = false
+    ExecutorFrame.Visible = false
     Opened = false
 end)
 OpenTween.Completed:Connect(function()
@@ -410,11 +410,11 @@ Checker = game:GetService'RunService'.RenderStepped:connect(function()
     Source.Size = UDim2.new(0, NextXSize, 0, NextYSize)
 end)
 
-local m = loadstring(game:HttpGet("https://raw.githubusercontent.com/WolfGod746/RobloxScripts/main/Executor%20Colors%20Module.lua"))()
+local m = loadstring(game:HttpGet("https://raw.githubusercontent.com/WolfGod746/RobloxScripts/ExecutorFrame/Executor%20Colors%20Module.lua"))()
 
 Source:GetPropertyChangedSignal("Text"):Connect(function()
     if Highlights then
-	    m.highlight_source("Text", Executor.Main.EditorFrame.Source, Executor.Main.EditorFrame.Lines)
+	    m.highlight_source("Text", Executor.ExecutorFrame.EditorFrame.Source, Executor.ExecutorFrame.EditorFrame.Lines)
     end
 end)
 _G.OpenExecutor()
