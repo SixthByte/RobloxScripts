@@ -23,7 +23,7 @@ local Save = Instance.new("TextButton")
 local Shadow1 = Instance.new("ImageLabel")
 local Shadow2 = Instance.new("ImageLabel")
 local Shadow3 = Instance.new("ImageLabel")
-local EBlack = Instance.new("Frame")
+local BlackOut = Instance.new("Frame")
 
 Executor.Name = "Executor"
 Executor.Parent = game.CoreGui
@@ -298,13 +298,13 @@ Shadow3.ImageColor3 = Color3.fromRGB(0, 0, 0)
 Shadow3.ScaleType = Enum.ScaleType.Slice
 Shadow3.SliceCenter = Rect.new(24, 24, 276, 276)
 
-EBlack.Name = "EBlack"
-EBlack.BackgroundColor3 = Color3.new(0, 0, 0)
-EBlack.Parent = ExecutorFrame
-EBlack.ZIndex = 9
-EBlack.Size = UDim2.new(-1, 0, 0, 0)
-EBlack.Position = UDim2.new(1, 0, 0, 0)
-EBlack.BorderSizePixel = 0
+BlackOut.Name = "BlackOut"
+BlackOut.BackgroundColor3 = Color3.new(0, 0, 0)
+BlackOut.Parent = ExecutorFrame
+BlackOut.ZIndex = 9
+BlackOut.Size = UDim2.new(-1, 0, 0, 0)
+BlackOut.Position = UDim2.new(1, 0, 0, 0)
+BlackOut.BorderSizePixel = 0
 
 Execute.MouseButton1Click:Connect(function()
 	loadstring(Source.Text)()
@@ -333,8 +333,8 @@ Save.Visible = false
 EditorFrame.Visible = false
 Title.Visible = false
 Logo.Visible = false
-ECloseBlack = game:GetService("TweenService"):Create(EBlack, TweenInfo.new(0.2), {Size = UDim2.new(-1, 0, 1, 0)})
-EOpenBlack = game:GetService("TweenService"):Create(EBlack, TweenInfo.new(0.2), {Size = UDim2.new(-1, 0, 0, 0)})
+ECloseBlack = game:GetService("TweenService"):Create(BlackOut, TweenInfo.new(0.2), {Size = UDim2.new(-1, 0, 1, 0)})
+EOpenBlack = game:GetService("TweenService"):Create(BlackOut, TweenInfo.new(0.2), {Size = UDim2.new(-1, 0, 0, 0)})
 ECloseTween = game:GetService("TweenService"):Create(ExecutorFrame, TweenInfo.new(0.2), {Size = UDim2.new(0, 721, 0, 0)})
 EOpenTween = game:GetService("TweenService"):Create(ExecutorFrame, TweenInfo.new(0.2), {Size = UDim2.new(0, 721, 0, 425)})
 function _G.OpenExecutor()
