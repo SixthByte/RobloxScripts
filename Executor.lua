@@ -323,6 +323,8 @@ Load.MouseButton1Click:Connect(function()
 	    Source.Text = readfile("HexExecutor/".. tostring(ScriptBox.Text) ..".lua")
 	end
 end)
+Executor.Enabled = true
+Main.Visible = true
 Execute.Visible = false
 Clear.Visible = false
 ScriptBox.Visible = false
