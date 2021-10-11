@@ -324,13 +324,13 @@ Load.MouseButton1Click:Connect(function()
 	end
 end)
 Execute.Visible = false
-    Clear.Visible = false
-    ScriptBox.Visible = false
-    Load.Visible = false
-    Save.Visible = false
-    EditorFrame.Visible = false
-    Title.Visible = false
-    Logo.Visible = false
+Clear.Visible = false
+ScriptBox.Visible = false
+Load.Visible = false
+Save.Visible = false
+EditorFrame.Visible = false
+Title.Visible = false
+Logo.Visible = false
 CloseBlack = game:GetService("TweenService"):Create(BlackOut, TweenInfo.new(0.2), {Size = UDim2.new(-1, 0, 1, 0)})
 OpenBlack = game:GetService("TweenService"):Create(BlackOut, TweenInfo.new(0.2), {Size = UDim2.new(-1, 0, 0, 0)})
 CloseTween = game:GetService("TweenService"):Create(Main, TweenInfo.new(0.2), {Size = UDim2.new(0, 721, 0, 0)})
