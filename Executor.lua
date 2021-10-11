@@ -127,6 +127,7 @@ Source.TextColor3 = Color3.fromRGB(225, 225, 225)
 Source.TextSize = 15.000
 Source.TextXAlignment = Enum.TextXAlignment.Left
 Source.TextYAlignment = Enum.TextYAlignment.Top
+Source.ZIndex = 3
 
 Comments_.Name = "Comments_"
 Comments_.Parent = Source
