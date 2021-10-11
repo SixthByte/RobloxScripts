@@ -323,7 +323,14 @@ Load.MouseButton1Click:Connect(function()
 	    Source.Text = readfile("HexExecutor/".. tostring(ScriptBox.Text) ..".lua")
 	end
 end)
-
+Execute.Visible = false
+    Clear.Visible = false
+    ScriptBox.Visible = false
+    Load.Visible = false
+    Save.Visible = false
+    EditorFrame.Visible = false
+    Title.Visible = false
+    Logo.Visible = false
 CloseBlack = game:GetService("TweenService"):Create(BlackOut, TweenInfo.new(0.2), {Size = UDim2.new(-1, 0, 1, 0)})
 OpenBlack = game:GetService("TweenService"):Create(BlackOut, TweenInfo.new(0.2), {Size = UDim2.new(-1, 0, 0, 0)})
 CloseTween = game:GetService("TweenService"):Create(Main, TweenInfo.new(0.2), {Size = UDim2.new(0, 721, 0, 0)})
@@ -408,3 +415,4 @@ Source:GetPropertyChangedSignal("Text"):Connect(function()
 	    m.highlight_source("Text", Executor.Main.EditorFrame.Source, Executor.Main.EditorFrame.Lines)
     end
 end)
+_G.OpenExecutor()
