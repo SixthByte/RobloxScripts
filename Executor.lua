@@ -417,3 +417,4 @@ Source:GetPropertyChangedSignal("Text"):Connect(function()
 	    m.highlight_source("Text", Executor.ExecutorFrame.EditorFrame.Source, Executor.ExecutorFrame.EditorFrame.Lines)
     end
 end)
+print("Executor Loaded.")
