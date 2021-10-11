@@ -362,6 +362,24 @@ CloseTween.Completed:Connect(function()
     Main.Visible = false
     Opened = false
 end)
+OpenTween.Completed:Connect(function()
+    Execute.Visible = true
+    Clear.Visible = true
+    ScriptBox.Visible = true
+    Load.Visible = true
+    Save.Visible = true
+    EditorFrame.Visible = true
+    Title.Visible = true
+    Logo.Visible = true
+    OpenBlack:Play()
+end)
+OpenBlack.Completed:Connect(function()
+    Shadow1.Visible = true
+    Shadow2.Visible = true
+    Shadow3.Visible = true
+    Minimize.Visible = true
+    Opened = true
+end)
 
 Checker = nil
 Checker = game:GetService'RunService'.RenderStepped:connect(function()
