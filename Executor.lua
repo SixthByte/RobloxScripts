@@ -323,8 +323,8 @@ Load.MouseButton1Click:Connect(function()
 	    Source.Text = readfile("HexExecutor/".. tostring(ScriptBox.Text) ..".lua")
 	end
 end)
-Executor.Enabled = true
-ExecutorFrame.Visible = true
+Executor.Enabled = false
+ExecutorFrame.Visible = false
 Execute.Visible = false
 Clear.Visible = false
 ScriptBox.Visible = false
@@ -417,4 +417,3 @@ Source:GetPropertyChangedSignal("Text"):Connect(function()
 	    m.highlight_source("Text", Executor.ExecutorFrame.EditorFrame.Source, Executor.ExecutorFrame.EditorFrame.Lines)
     end
 end)
-_G.OpenExecutor()
