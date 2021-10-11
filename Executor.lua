@@ -328,14 +328,22 @@ CloseBlack = game:GetService("TweenService"):Create(BlackOut, TweenInfo.new(0.2)
 OpenBlack = game:GetService("TweenService"):Create(BlackOut, TweenInfo.new(0.2), {Size = UDim2.new(-1, 0, 0, 0)})
 CloseTween = game:GetService("TweenService"):Create(Main, TweenInfo.new(0.2), {Size = UDim2.new(0, 721, 0, 0)})
 OpenTween = game:GetService("TweenService"):Create(Main, TweenInfo.new(0.2), {Size = UDim2.new(0, 721, 0, 425)})
+function _G.OpenExecutor()
+    Executor.Enabled = true
+    Main.Visible = true
+    OpenTween:Play()
+end
+function _G.CloseExecutor()
+    Shadow1.Visible = false
+    Shadow2.Visible = false
+    Shadow3.Visible = false
+    Minimize.Visible = false
+    CloseBlack:Play()
+end
 local Opened = true
 Minimize.MouseButton1Click:Connect(function()
-	if Opened then
-        Shadow1.Visible = false
-        Shadow2.Visible = false
-        Shadow3.Visible = false
-        Minimize.Visible = false
-	      CloseBlack:Play()
+    if Opened then
+        _G.CloseExecutor()
     end
 end)
 CloseBlack.Completed:Connect(function()
