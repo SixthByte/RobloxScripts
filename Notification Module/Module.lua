@@ -152,6 +152,7 @@ function Notif(title, body, duration, iconID, mainbutton, button2, waituntilansw
             	ButtonFrame:Destroy()
             	wait(0.05)
             end
+		NotifGUI:Destroy()
         end)
   	end
 
@@ -210,6 +211,7 @@ function Notif(title, body, duration, iconID, mainbutton, button2, waituntilansw
             	ButtonFrame:Destroy()
             	wait(0.05)
             end
+		NotifGUI:Destroy()
         end)
     end
     
@@ -333,6 +335,7 @@ function Notif(title, body, duration, iconID, mainbutton, button2, waituntilansw
             ButtonFrame:Destroy()
             wait(0.05)
         end
+	NotifGUI:Destroy()
     end
 end
 
