@@ -418,3 +418,45 @@ Source:GetPropertyChangedSignal("Text"):Connect(function()
 	    m.highlight_source("Text", Executor.EFrame.EditorFrame.Source, Executor.EFrame.EditorFrame.Lines)
     end
 end)
+
+local function dragify(MainFrame)
+
+	local dragging
+	local dragInput
+	local dragStart
+	local startPos
+
+	local function update(input)
+		local Delta = input.Position - dragStart
+		local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
+		game:GetService("TweenService"):Create(MainFrame, TweenInfo.new(.15), {Position = Position}):Play()
+	end
+
+	MainFrame.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true
+			dragStart = input.Position
+			startPos = MainFrame.Position
+
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+
+	MainFrame.InputChanged:Connect(function(input)
+		if (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+			dragInput = input
+		end
+	end)
+
+	game:GetService("UserInputService").InputChanged:Connect(function(input)
+		if input == dragInput and dragging then
+			update(input)
+		end
+	end)
+end
+
+dragify(Main)
