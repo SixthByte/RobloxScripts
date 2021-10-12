@@ -226,7 +226,7 @@ Title.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 Title.BorderSizePixel = 0
 Title.Size = UDim2.new(0, 721, 0, 37)
 Title.Font = Enum.Font.GothamSemibold
-Title.Text = "Hex Executor"
+Title.Text = "Hexecutor"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextSize = 15.000
 
