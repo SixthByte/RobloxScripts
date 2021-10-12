@@ -459,4 +459,4 @@ local function dragify(MainFrame)
 	end)
 end
 
-dragify(Main)
+dragify(EFrame)
