@@ -250,7 +250,7 @@ function LT2Notif(header, body, RightButtonText, LeftButtonText, callback)
     end
     Right.MouseButton1Down:Connect(function()
         ClickSound:Play()
-        if LeftButtonText ~= nil or LeftButtonText ~= false then
+        if Left and LeftFake then
             Left.Visible = false
             LeftFake.BackgroundTransparency = 0
         end
