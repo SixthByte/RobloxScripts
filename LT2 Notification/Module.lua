@@ -53,7 +53,7 @@ function LT2Notif(header, body, RightButtonText, LeftButtonText, callback)
     if body == nil or body == false then
         BodyText.Text = "BODY TEXT"
     else
-        BodyText.Text = tostring(body)
+        BodyText.Text = tostring(body:upper())
     end
     BodyText.TextColor3 = Color3.fromRGB(0, 0, 0)
     BodyText.TextSize = 24.000
@@ -72,7 +72,7 @@ function LT2Notif(header, body, RightButtonText, LeftButtonText, callback)
     if header == nil or header == false then
         Heading.Text = "HEADING"
     else
-        Heading.Text = tostring(header)
+        Heading.Text = tostring(header:upper())
     end
     Heading.TextColor3 = Color3.fromRGB(0, 0, 0)
     Heading.TextSize = 48.000
