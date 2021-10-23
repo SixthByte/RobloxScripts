@@ -87,7 +87,7 @@ function LT2Notif(header, body, RightButtonText, LeftButtonText, callback)
     HeadingDropShadow.Size = UDim2.new(1, 0, 1, 0)
     HeadingDropShadow.ZIndex = 5
     HeadingDropShadow.Font = Enum.Font.ArialBold
-    HeadingDropShadow.Text = "HEADING"
+    HeadingDropShadow.Text = Heading.Text
     HeadingDropShadow.TextColor3 = Color3.fromRGB(131, 131, 131)
     HeadingDropShadow.TextSize = 48.000
     HeadingDropShadow.TextStrokeColor3 = Color3.fromRGB(131, 131, 131)
