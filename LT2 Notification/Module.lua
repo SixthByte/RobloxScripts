@@ -13,6 +13,11 @@ function LT2Notif(header, body, RightButtonText, LeftButtonText, callback)
     local RightDropShadow = Instance.new("TextLabel")
     local RightFake = Instance.new("TextLabel")
     local RightFakeF = Instance.new("Frame")
+    local Left = Instance.new("TextButton")
+    local LeftDropShadowFrame = Instance.new("Frame")
+    local LeftDropShadow = Instance.new("TextLabel")
+    local LeftFake = Instance.new("TextLabel")
+    local LeftFakeF = Instance.new("Frame")
     
     Notif.Name = "Notif"
     Notif.Parent = game.CoreGui
@@ -147,14 +152,7 @@ function LT2Notif(header, body, RightButtonText, LeftButtonText, callback)
     RightFake.TextColor3 = Color3.new(0, 0, 0)
     RightFake.Text = RightDropShadow.Text
     
-    if LeftButtonText ~= nil then
-        local Left = Instance.new("TextButton")
-        local LeftDropShadowFrame = Instance.new("Frame")
-        local LeftDropShadow = Instance.new("TextLabel")
-        local LeftFake = Instance.new("TextLabel")
-        local LeftFakeF = Instance.new("Frame")
-    
-        Left.Name = "Left"
+    Left.Name = "Left"
         Left.Parent = Main
         Left.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
         Left.BorderSizePixel = 0
@@ -212,6 +210,8 @@ function LT2Notif(header, body, RightButtonText, LeftButtonText, callback)
         LeftFakeF.Position = UDim2.new(0, 4, 0, 4)
         LeftFakeF.Size = UDim2.new(1, 0, 1, 0)
         LeftFakeF.ZIndex = 4
+    
+    if LeftButtonText ~= nil then
         
         LeftColorDark = game:GetService("TweenService"):Create(LeftFake, TweenInfo.new(0.1), {BackgroundColor3 = Color3.new(0.5, 0.5, 0.5)})
         LeftColorLight = game:GetService("TweenService"):Create(LeftFake, TweenInfo.new(0.1), {BackgroundColor3 = Color3.new(1, 1, 1)})
@@ -232,7 +232,11 @@ function LT2Notif(header, body, RightButtonText, LeftButtonText, callback)
             closeGui()
         end)
     else
-        return
+        Left:Destroy()
+        LeftDropShadowFrame:Destroy()
+        LeftDropShadow:Destroy()
+        LeftFake:Destroy()
+        LeftFakeF:Destroy()
     end
     
     RightFakeF.Name = "DropShadow"
