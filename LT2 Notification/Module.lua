@@ -134,6 +134,19 @@ function LT2Notif(header, body, RightButtonText, LeftButtonText, callback)
     RightDropShadow.TextSize = 24.000
     RightDropShadow.TextWrapped = true
     
+    RightFake.Parent = Main
+    RightFake.Name = "RightFake"
+    RightFake.BorderSizePixel = 0
+    RightFake.BackgroundTransparency = 1
+    RightFake.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    RightFake.Position = UDim2.new(0.5, 20, 0.5, 0)
+    RightFake.Size = UDim2.new(0, 130, 0, 40)
+    RightFake.ZIndex = 5
+    RightFake.TextSize = 24.000
+    RightFake.Font = Enum.Font.ArialBold
+    RightFake.TextColor3 = Color3.new(0, 0, 0)
+    RightFake.Text = RightDropShadow.Text
+    
     if LeftButtonText ~= nil or LeftButtonText ~= false then
         local Left = Instance.new("TextButton")
         local LeftDropShadowFrame = Instance.new("Frame")
@@ -171,7 +184,7 @@ function LT2Notif(header, body, RightButtonText, LeftButtonText, callback)
         LeftDropShadow.ZIndex = 5
         LeftDropShadow.Font = Enum.Font.ArialBold
         if LeftButtonText == nil or LeftButtonText == false then
-            LeftDropShadow.Text = "Close"
+            LeftDropShadow.Text = "OK"
         else
             LeftDropShadow.Text = tostring(LeftButtonText)
         end
@@ -200,20 +213,25 @@ function LT2Notif(header, body, RightButtonText, LeftButtonText, callback)
         LeftFakeF.Size = UDim2.new(1, 0, 1, 0)
         LeftFakeF.ZIndex = 4
         
+        LeftColorDark = game:GetService("TweenService"):Create(LeftFake, TweenInfo.new(0.1), {BackgroundColor3 = Color3.new(0.5, 0.5, 0.5)})
+        LeftColorLight = game:GetService("TweenService"):Create(LeftFake, TweenInfo.new(0.1), {BackgroundColor3 = Color3.new(1, 1, 1)})
+        
+        Left.MouseButton1Down:Connect(function()
+            if callback then
+                callback()
+            end
+            ClickSound:Play()
+            Left.Visible = false
+            LeftFake.BackgroundTransparency = 0
+            Right.Visible = false
+            RightFake.BackgroundTransparency = 0
+            LeftColorDark:Play()
+            wait(0.1)
+            LeftColorLight:Play()
+            wait(0.1)
+            closeGui()
+        end)
     end
-    
-    RightFake.Parent = Main
-    RightFake.Name = "RightFake"
-    RightFake.BorderSizePixel = 0
-    RightFake.BackgroundTransparency = 1
-    RightFake.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    RightFake.Position = UDim2.new(0.5, 20, 0.5, 0)
-    RightFake.Size = UDim2.new(0, 130, 0, 40)
-    RightFake.ZIndex = 5
-    RightFake.TextSize = 24.000
-    RightFake.Font = Enum.Font.ArialBold
-    RightFake.TextColor3 = Color3.new(0, 0, 0)
-    RightFake.Text = RightDropShadow.Text
     
     RightFakeF.Name = "DropShadow"
     RightFakeF.Parent = RightFake
@@ -223,8 +241,6 @@ function LT2Notif(header, body, RightButtonText, LeftButtonText, callback)
     RightFakeF.Size = UDim2.new(1, 0, 1, 0)
     RightFakeF.ZIndex = 4
     
-    LeftColorDark = game:GetService("TweenService"):Create(LeftFake, TweenInfo.new(0.1), {BackgroundColor3 = Color3.new(0.5, 0.5, 0.5)})
-    LeftColorLight = game:GetService("TweenService"):Create(LeftFake, TweenInfo.new(0.1), {BackgroundColor3 = Color3.new(1, 1, 1)})
     RightColorDark = game:GetService("TweenService"):Create(RightFake, TweenInfo.new(0.1), {BackgroundColor3 = Color3.new(0.5, 0.5, 0.5)})
     RightColorLight = game:GetService("TweenService"):Create(RightFake, TweenInfo.new(0.1), {BackgroundColor3 = Color3.new(1, 1, 1)})
     
@@ -232,21 +248,6 @@ function LT2Notif(header, body, RightButtonText, LeftButtonText, callback)
     	Main.Visible = false
     	Notif:Destroy()
     end
-    Left.MouseButton1Down:Connect(function()
-        if callback then
-            callback()
-        end
-        ClickSound:Play()
-        Left.Visible = false
-        LeftFake.BackgroundTransparency = 0
-        Right.Visible = false
-        RightFake.BackgroundTransparency = 0
-        LeftColorDark:Play()
-        wait(0.1)
-        LeftColorLight:Play()
-        wait(0.1)
-        closeGui()
-    end)
     Right.MouseButton1Down:Connect(function()
         ClickSound:Play()
         if LeftButtonText ~= nil or LeftButtonText ~= false then
