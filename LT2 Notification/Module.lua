@@ -11,11 +11,6 @@ function LT2Notif(header, body, RightButtonText, LeftButtonText, callback)
     local Right = Instance.new("TextButton")
     local RightDropShadowFrame = Instance.new("Frame")
     local RightDropShadow = Instance.new("TextLabel")
-    local Left = Instance.new("TextButton")
-    local LeftDropShadowFrame = Instance.new("Frame")
-    local LeftDropShadow = Instance.new("TextLabel")
-    local LeftFake = Instance.new("TextLabel")
-    local LeftFakeF = Instance.new("Frame")
     local RightFake = Instance.new("TextLabel")
     local RightFakeF = Instance.new("Frame")
     
@@ -140,6 +135,11 @@ function LT2Notif(header, body, RightButtonText, LeftButtonText, callback)
     RightDropShadow.TextWrapped = true
     
     if LeftButtonText ~= nil or LeftButtonText ~= false then
+        local Left = Instance.new("TextButton")
+        local LeftDropShadowFrame = Instance.new("Frame")
+        local LeftDropShadow = Instance.new("TextLabel")
+        local LeftFake = Instance.new("TextLabel")
+        local LeftFakeF = Instance.new("Frame")
     
         Left.Name = "Left"
         Left.Parent = Main
@@ -171,9 +171,9 @@ function LT2Notif(header, body, RightButtonText, LeftButtonText, callback)
         LeftDropShadow.ZIndex = 5
         LeftDropShadow.Font = Enum.Font.ArialBold
         if LeftButtonText == nil or LeftButtonText == false then
-            RightDropShadow.Text = "Close"
+            LeftDropShadow.Text = "Close"
         else
-            RightDropShadow.Text = tostring(LeftButtonText)
+            LeftDropShadow.Text = tostring(LeftButtonText)
         end
         LeftDropShadow.TextColor3 = Color3.fromRGB(0, 0, 0)
         LeftDropShadow.TextSize = 24.000
