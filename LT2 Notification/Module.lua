@@ -147,7 +147,7 @@ function LT2Notif(header, body, RightButtonText, LeftButtonText, callback)
     RightFake.TextColor3 = Color3.new(0, 0, 0)
     RightFake.Text = RightDropShadow.Text
     
-    if LeftButtonText ~= nil or LeftButtonText ~= false then
+    if LeftButtonText ~= nil then
         local Left = Instance.new("TextButton")
         local LeftDropShadowFrame = Instance.new("Frame")
         local LeftDropShadow = Instance.new("TextLabel")
