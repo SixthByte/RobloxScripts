@@ -1,5 +1,5 @@
 local LT2Notif = {}
-function LT2Notif(heading, body, RightButtonText, LeftButtonText, callback)
+function LT2Notif(header, body, RightButtonText, LeftButtonText, callback)
     local Notif = Instance.new("ScreenGui")
     local Main = Instance.new("Frame")
     local ClickSound = Instance.new("Sound")
@@ -50,7 +50,11 @@ function LT2Notif(heading, body, RightButtonText, LeftButtonText, callback)
     BodyText.Size = UDim2.new(1, -20, 0, 120)
     BodyText.ZIndex = 5
     BodyText.Font = Enum.Font.ArialBold
-    BodyText.Text = "BODY TEXT"
+    if body == nil or body == false then
+        BodyText.Text = "BODY TEXT"
+    else
+        BodyText.Text = tostring(body)
+    end
     BodyText.TextColor3 = Color3.fromRGB(0, 0, 0)
     BodyText.TextSize = 24.000
     BodyText.TextWrapped = true
@@ -65,7 +69,11 @@ function LT2Notif(heading, body, RightButtonText, LeftButtonText, callback)
     Heading.Size = UDim2.new(1, 0, 0, 40)
     Heading.ZIndex = 6
     Heading.Font = Enum.Font.ArialBold
-    Heading.Text = "HEADING"
+    if header == nil or header == false then
+        Heading.Text = "HEADING"
+    else
+        Heading.Text = tostring(header)
+    end
     Heading.TextColor3 = Color3.fromRGB(0, 0, 0)
     Heading.TextSize = 48.000
     Heading.TextWrapped = true
