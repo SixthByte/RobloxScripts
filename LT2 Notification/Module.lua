@@ -1,5 +1,5 @@
 local LT2Notif = {}
-function LT2Notif(heading, body, LeftButtonText, callback)
+function LT2Notif(heading, body, RightButtonText, LeftButtonText, callback)
     local Notif = Instance.new("ScreenGui")
     local Main = Instance.new("Frame")
     local ClickSound = Instance.new("Sound")
@@ -122,7 +122,11 @@ function LT2Notif(heading, body, LeftButtonText, callback)
     RightDropShadow.Size = UDim2.new(1, 0, 1, 0)
     RightDropShadow.ZIndex = 5
     RightDropShadow.Font = Enum.Font.ArialBold
-    RightDropShadow.Text = "Close"
+    if RightButtonText == nil or RightButtonText == false then
+        RightDropShadow.Text = "Close"
+    else
+        RightDropShadow.Text = tostring(RightButtonText)
+    end
     RightDropShadow.TextColor3 = Color3.fromRGB(0, 0, 0)
     RightDropShadow.TextSize = 24.000
     RightDropShadow.TextWrapped = true
@@ -158,7 +162,11 @@ function LT2Notif(heading, body, LeftButtonText, callback)
         LeftDropShadow.Size = UDim2.new(1, 0, 1, 0)
         LeftDropShadow.ZIndex = 5
         LeftDropShadow.Font = Enum.Font.ArialBold
-        LeftDropShadow.Text = "Close"
+        if LeftButtonText == nil or LeftButtonText == false then
+            RightDropShadow.Text = "Close"
+        else
+            RightDropShadow.Text = tostring(LeftButtonText)
+        end
         LeftDropShadow.TextColor3 = Color3.fromRGB(0, 0, 0)
         LeftDropShadow.TextSize = 24.000
         LeftDropShadow.TextWrapped = true
