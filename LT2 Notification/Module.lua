@@ -231,6 +231,8 @@ function LT2Notif(header, body, RightButtonText, LeftButtonText, callback)
             wait(0.1)
             closeGui()
         end)
+    else
+        return
     end
     
     RightFakeF.Name = "DropShadow"
