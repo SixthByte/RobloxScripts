@@ -82,6 +82,22 @@ function Library:CreateMain(Options)
 			update(input)
 		end
 	end)
+	
+	Main.Upline = Library:Create("Frame", {
+		Name = "Upline",
+		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+		BorderSizePixel = 0,
+		Size = UDim2.new(1, 0, 0.00899999961, 0),
+		ZIndex = 10,
+	})
+
+	Main.Uplinegradient = Library:Create("UIGradient", {
+		Color = ColorSequence.new{
+			ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 183, 183)),
+			ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 248, 248)),
+			ColorSequenceKeypoint.new(1.00, Color3.fromRGB(125, 92, 164))
+		}
+	})
 
 	Main.Sidebar = Library:Create("ScrollingFrame", {
 		Name = "Sidebar",
@@ -2328,6 +2344,8 @@ function Library:CreateMain(Options)
 
 	Main.Screengui.Parent = game:GetService("CoreGui")
 	Main.Motherframe.Parent = Main.Screengui
+	Main.Upline.Parent = Main.Motherframe
+	Main.Uplinegradient.Parent = Main.Upline
 	Main.Sidebar.Parent = Main.Motherframe
 	Main.Categorieshandler.Parent = Main.Motherframe
 	Main.Categoriesselector.Parent = Main.Sidebar
