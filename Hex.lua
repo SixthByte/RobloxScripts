@@ -19,7 +19,7 @@ Image.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Image.BackgroundTransparency = 1.000
 Image.Position = UDim2.new(-1.00641286, 0, -1.19648433, 0)
 Image.Size = UDim2.new(0, 300, 0, 300)
-Image.Image = "rbxassetid://7403268958"
+Image.Image = "rbxassetid://7826686602"
 
 wait(1.5)
 
