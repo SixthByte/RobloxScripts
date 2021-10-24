@@ -93,9 +93,7 @@ function Library:CreateMain(Options)
 
 	Main.Uplinegradient = Library:Create("UIGradient", {
 		Color = ColorSequence.new{
-			ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 183, 183)),
-			ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 248, 248)),
-			ColorSequenceKeypoint.new(1.00, Color3.fromRGB(125, 92, 164))
+			ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 25, 255))
 		}
 	})
 
