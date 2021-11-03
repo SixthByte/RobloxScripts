@@ -251,13 +251,13 @@ Minimize.Position = UDim2.new(0.96, 0, 0.0135, 0)
 Minimize.Size = UDim2.new(0, 25, 0, 25)
 
 Minimize.MouseEnter:Connect(function()
-    cP.BackgroundColor3 = Color3.fromRGB(255,0,0)
+    Minimize.BackgroundColor3 = Color3.fromRGB(255,0,0)
 end)
 Minimize.MouseLeave:Connect(function()
-    cP.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+    Minimize.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
 end)
 Minimize.MouseButton1Down:Connect(function()
-    cP.BackgroundColor3 = Color3.fromRGB(100, 0, 0)
+    Minimize.BackgroundColor3 = Color3.fromRGB(100, 0, 0)
 end)
 
 Lines.Name = "Lines"
