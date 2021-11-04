@@ -29,6 +29,7 @@ function Notif(title, body, duration, iconID, mainbutton, button2, waituntilansw
 	local Shadow2 = Instance.new("ImageLabel")
 	local Shadow3 = Instance.new("ImageLabel")
 	local ButtonFrame = Instance.new("Frame")
+	local timer = Instance.new("Frame")
 	
     NotifGUI.Name = "NotifGUI"
     NotifGUI.Parent = game.CoreGui
@@ -149,6 +150,7 @@ function Notif(title, body, duration, iconID, mainbutton, button2, waituntilansw
             	Shadow1.ImageTransparency = i
             	Shadow2.ImageTransparency = i
             	Shadow3.ImageTransparency = i
+		timer.BackgroundTransparency = i
             	ButtonFrame:Destroy()
             	wait(0.05)
             end
@@ -208,6 +210,7 @@ function Notif(title, body, duration, iconID, mainbutton, button2, waituntilansw
             	Shadow1.ImageTransparency = i
             	Shadow2.ImageTransparency = i
             	Shadow3.ImageTransparency = i
+		timer.BackgroundTransparency = i
             	ButtonFrame:Destroy()
             	wait(0.05)
             end
@@ -295,6 +298,13 @@ function Notif(title, body, duration, iconID, mainbutton, button2, waituntilansw
   	Shadow3.ImageColor3 = Color3.fromRGB(0, 0, 0)
   	Shadow3.ScaleType = Enum.ScaleType.Slice
   	Shadow3.SliceCenter = Rect.new(24, 24, 276, 276)
+	
+	timer.Parent = NotifFrame
+	timer.Name = "timer"
+	timer.BackgroundColor3 = Color3.fromRGB(0, 60, 255)
+	timer.BorderSizePixel = 0
+	timer.Position = UDim2.new(0, 0, 1, -3)
+	timer.Size = UDim2.new(1, 0, 0, 3)
 
     local IconImage = nil
     if iconID == nil then
@@ -315,9 +325,12 @@ function Notif(title, body, duration, iconID, mainbutton, button2, waituntilansw
 		Shadow1.ImageTransparency = i
 		Shadow2.ImageTransparency = i
 		Shadow3.ImageTransparency = i
+		timer.BackgroundTransparency = i
 		wait(0.01)
 	end
-    
+    if waituntilanswer then
+	game:GetService("TweenService"):Create(timer, TweenInfo.new(tonumber(duration)), {Size = UDim2.new(0, 0, 0, 3)}):Play()
+    end
     if waituntilanswer ~= true then
         wait(tonumber(duration))
         for i = 0, 1, 0.2 do
@@ -332,6 +345,7 @@ function Notif(title, body, duration, iconID, mainbutton, button2, waituntilansw
             Shadow1.ImageTransparency = i
             Shadow2.ImageTransparency = i
             Shadow3.ImageTransparency = i
+	    timer.BackgroundTransparency = i
             ButtonFrame:Destroy()
             wait(0.05)
         end
