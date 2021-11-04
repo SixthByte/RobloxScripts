@@ -330,6 +330,7 @@ function Notif(title, body, duration, iconID, mainbutton, button2, waituntilansw
 	end
     if waituntilanswer ~= true then
 	game:GetService("TweenService"):Create(timer, TweenInfo.new(tonumber(duration)), {Size = UDim2.new(0, 0, 0, 3)}):Play()
+	game:GetService("TweenService"):Create(timer, TweenInfo.new(tonumber(duration)), {BackgroundColor3 = Color3.fromRGB(0, 0, 255)}):Play()
         wait(tonumber(duration))
         for i = 0, 1, 0.2 do
             if Button1 ~= nil then
