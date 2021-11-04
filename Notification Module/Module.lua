@@ -328,10 +328,8 @@ function Notif(title, body, duration, iconID, mainbutton, button2, waituntilansw
 		timer.BackgroundTransparency = i
 		wait(0.01)
 	end
-    if waituntilanswer then
-	game:GetService("TweenService"):Create(timer, TweenInfo.new(tonumber(duration)), {Size = UDim2.new(0, 0, 0, 3)}):Play()
-    end
     if waituntilanswer ~= true then
+	game:GetService("TweenService"):Create(timer, TweenInfo.new(tonumber(duration)), {Size = UDim2.new(0, 0, 0, 3)}):Play()
         wait(tonumber(duration))
         for i = 0, 1, 0.2 do
             if Button1 ~= nil then
