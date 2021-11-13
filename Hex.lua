@@ -47,14 +47,12 @@ end
 wait(0.3)
 for i = 0.03, 0, -0.5 do
     Image.ImageTransparency = i
-    Hex.ImageTransparency = i
     wait(0.01)
 end
 wait(1)
 
 for v = 0, 1, 0.15 do
     Image.ImageTransparency = v
-    Hex.ImageTransparency = v
     wait(0.01)
 end
 StartupGui:Destroy()
