@@ -421,6 +421,39 @@ Checker = game:GetService'RunService'.RenderStepped:connect(function()
     Source.Size = UDim2.new(0, NextXSize, 0, NextYSize)
 end)
 
+local dragInput
+	local dragStart
+	local startPos
+
+	local function update(input)
+		local delta = input.Position - dragStart
+		EFrame:TweenPosition(UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y), 'Out', 'Linear', 0.01, true)
+	end
+
+	EFrame.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			dragging = true
+			dragStart = input.Position
+			startPos = EFrame.Position
+			repeat
+				wait()
+			until input.UserInputState == Enum.UserInputState.End
+			dragging = false
+		end
+	end)
+
+	EFrame.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement then
+			dragInput = input
+		end
+	end)
+
+	game:GetService("UserInputService").InputChanged:Connect(function(input)
+		if input == dragInput and dragging then
+			update(input)
+		end
+	end)
+
 local m = loadstring(game:HttpGet("https://raw.githubusercontent.com/WolfGod746/RobloxScripts/main/Executor%20Colors%20Module.lua"))()
 
 Source:GetPropertyChangedSignal("Text"):Connect(function()
