@@ -421,36 +421,40 @@ Checker = game:GetService'RunService'.RenderStepped:connect(function()
     Source.Size = UDim2.new(0, NextXSize, 0, NextYSize)
 end)
 
-local dragInput
-	local dragStart
-	local startPos
+local dragging;
+	local dragInput;
+	local dragStart;
+	local startPos;
 
 	local function update(input)
-		local delta = input.Position - dragStart
-		EFrame:TweenPosition(UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y), 'Out', 'Linear', 0.01, true)
+		local Delta = input.Position - dragStart;
+		local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y);
+		game:GetService("TweenService"):Create(EFrame, TweenInfo.new(.15), {Position = Position}):Play();
 	end
 
 	EFrame.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
-			dragging = true
-			dragStart = input.Position
-			startPos = EFrame.Position
-			repeat
-				wait()
-			until input.UserInputState == Enum.UserInputState.End
-			dragging = false
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true;
+			dragStart = input.Position;
+			startPos = EFrame.Position;
+
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false;
+				end
+			end)
 		end
 	end)
 
 	EFrame.InputChanged:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseMovement then
-			dragInput = input
+		if (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+			dragInput = input;
 		end
 	end)
 
 	game:GetService("UserInputService").InputChanged:Connect(function(input)
 		if input == dragInput and dragging then
-			update(input)
+			update(input);
 		end
 	end)
 
