@@ -139,7 +139,7 @@ function Library:CreateMain(Options)
   	HexLogo.Parent = Main.Sidebar
   	HexLogo.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
   	HexLogo.BackgroundTransparency = 1.000
-  	HexLogo.Position = UDim2.new(0, 5, 0, 370)
+  	HexLogo.Position = UDim2.new(0, 5, 0, 380)
   	HexLogo.Size = UDim2.new(0, 60, 0, 30)
   	HexLogo.ZIndex = 1
   	HexLogo.Image = "rbxassetid://7990079445"
