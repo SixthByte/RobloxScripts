@@ -429,7 +429,7 @@ local dragging;
 	local function update(input)
 		local Delta = input.Position - dragStart;
 		local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y);
-		game:GetService("TweenService"):Create(EFrame, TweenInfo.new(.15), {Position = Position}):Play();
+		game:GetService("TweenService"):Create(EFrame, TweenInfo.new(0.01), {Position = Position}):Play();
 	end
 
 	EFrame.InputBegan:Connect(function(input)
