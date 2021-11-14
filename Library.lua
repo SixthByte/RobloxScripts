@@ -133,7 +133,7 @@ function Library:CreateMain(Options)
 		ScrollBarThickness = 0,
 	})
 	
-	-- * If uncommented, the Hex logo will appear and the bottom left corner *
+	--[[ * If uncommented, the Hex logo will appear and the bottom left corner *
 	local HexLogo = Instance.new("ImageLabel")
 	HexLogo.Name = "Logo"
   	HexLogo.Parent = Main.Sidebar
@@ -143,7 +143,7 @@ function Library:CreateMain(Options)
   	HexLogo.Size = UDim2.new(0, 60, 0, 30)
   	HexLogo.ZIndex = 1
   	HexLogo.Image = "rbxassetid://7990079445"
-  	HexLogo.ImageColor3 = Color3.fromRGB(255, 255, 255)
+  	HexLogo.ImageColor3 = Color3.fromRGB(255, 255, 255)]]
 
 	table.insert(Objects.GrayContrast, Main.Sidebar)
 
