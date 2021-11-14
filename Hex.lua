@@ -19,7 +19,7 @@ Image.Name = "Image"
 Image.Parent = ImageFrame
 Image.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Image.BackgroundTransparency = 1.000
-Image.Position = UDim2.new(-1.00641286, 0, -1.19648433, 0)
+Image.Position = UDim2.new(-1, 0, -1.25, 0)
 Image.Size = UDim2.new(0, 300, 0, 300)
 Image.Image = "rbxassetid://7826686602"
 Image.ImageTransparency = 1
@@ -28,10 +28,10 @@ Hex.Name = "Hex"
 Hex.Parent = ImageFrame
 Hex.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 Hex.BackgroundTransparency = 1.000
-Hex.Position = UDim2.new(-0.8, 0, -0.23, 0)
+Hex.Position = UDim2.new(-0.85, 0, -10.25, 0)
 Hex.Size = UDim2.new(0, 270, 0, 100)
 Hex.Image = "rbxassetid://7990079445"
-Hex.ImageTransparency = 1
+Hex.ImageTransparency = 0
 
 Sound.Name = "Windows11"
 Sound.Parent = ImageFrame
@@ -40,19 +40,15 @@ Sound.TimePosition = 1
 Sound.Volume = 1.5
 Sound:Play()
 wait(0.1)
-for i = 1, 0.3, -0.05 do
+for i = 1, 0, -0.2 do
     Image.ImageTransparency = i
     wait(0.01)
 end
-wait(0.3)
-for i = 0.03, 0, -0.5 do
-    Image.ImageTransparency = i
-    wait(0.01)
-end
-wait(1)
-
+game:GetService("TweenService"):Create(Hex, TweenInfo.new(1, Enum.EasingStyle.Cubic), {Position = UDim2.new(-0.85, 0, -0.25, 0)}):Play();
+wait(2)
 for v = 0, 1, 0.15 do
     Image.ImageTransparency = v
+    Hex.ImageTransparency = v
     wait(0.01)
 end
 StartupGui:Destroy()
