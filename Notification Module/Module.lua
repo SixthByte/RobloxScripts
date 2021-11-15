@@ -308,7 +308,7 @@ function Notif(title, body, duration, iconID, mainbutton, button2, waituntilansw
 
     local IconImage = nil
     if iconID == nil then
-        IconImage = "rbxassetid://7403270296"
+        IconImage = "rbxassetid://7826686602"
     else
         IconImage = tostring(iconID)
     end
