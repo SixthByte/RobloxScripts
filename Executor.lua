@@ -237,7 +237,7 @@ Logo.BackgroundTransparency = 1.000
 Logo.BorderSizePixel = 0
 Logo.Position = UDim2.new(0.00499999989, 0, 0.00200000009, 0)
 Logo.Size = UDim2.new(0, 34, 0, 34)
-Logo.Image = "rbxassetid://7403270296"
+Logo.Image = "rbxassetid://7826686602"
 
 Minimize.Name = "Minimize"
 Minimize.Parent = EFrame
