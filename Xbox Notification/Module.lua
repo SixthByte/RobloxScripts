@@ -12,7 +12,8 @@ function XboxNotification(Title, Description, Icon, Switch, SwitchText)
     local DescriptionE = Instance.new("TextLabel")
     local Sound = Instance.new("Sound")
     
-    XboxNotif.Name = "XboxNotif"
+    local OriginalName = game:GetService("HttpService"):GenerateGUID(false)
+    XboxNotif.Name = "|.NOTIF|_"..string.gsub(OriginalName, "-", "").."?!"
     XboxNotif.Parent = game.CoreGui
     XboxNotif.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     
