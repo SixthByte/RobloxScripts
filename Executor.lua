@@ -60,8 +60,11 @@ Clear.Text = "Clear"
 Clear.TextColor3 = Color3.fromRGB(255, 255, 255)
 Clear.TextSize = 14.000
 
-if isfolder("HexExecutor") ~= true then
-    makefolder("HexExecutor")
+if isfolder("Hex") ~= true then
+    makefolder("Hex")
+end
+if isfolder("Hex/Scripts") ~= true then
+    makefolder("Hex/Scripts")
 end
 
 ScriptBox.Name = "ScriptBox"
@@ -326,12 +329,12 @@ Clear.MouseButton1Click:Connect(function()
 end)
 
 Save.MouseButton1Click:Connect(function()
-	writefile("HexExecutor/".. tostring(ScriptBox.Text) ..".lua", tostring(Source.Text))
+	writefile("Hex/Scripts/".. tostring(ScriptBox.Text) ..".lua", tostring(Source.Text))
 end)
 
 Load.MouseButton1Click:Connect(function()
-    if isfile("HexExecutor/".. tostring(ScriptBox.Text) ..".lua") then
-	    Source.Text = readfile("HexExecutor/".. tostring(ScriptBox.Text) ..".lua")
+    if isfile("Hex/Scripts/".. tostring(ScriptBox.Text) ..".lua") then
+	    Source.Text = readfile("Hex/Scripts/".. tostring(ScriptBox.Text) ..".lua")
 	end
 end)
 Executor.Enabled = false
