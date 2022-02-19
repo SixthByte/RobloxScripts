@@ -21,7 +21,7 @@ function XboxNotification(Title, Description, Icon, Switch, SwitchText)
     Main.Parent = XboxNotif
     Main.BackgroundColor3 = Color3.fromRGB(0, 40, 120)
     Main.BorderSizePixel = 0
-    Main.Position = UDim2.new(0.372222275, 0, 0.937984467, 0)
+    Main.Position = UDim2.new(0.4, 0, 0.9, 0)
     Main.Size = UDim2.new(0, 368, 0, 0)
     
     IconE.Name = "Icon"
@@ -106,7 +106,7 @@ function XboxNotification(Title, Description, Icon, Switch, SwitchText)
     Sound.SoundId = "rbxassetid://261094177"
     
     local Tween1 = game:GetService("TweenService"):Create(Main, TweenInfo.new(0.2, Enum.EasingStyle.Quad), {Size = UDim2.new(0, 368, 0, 113)})
-    local Tween2 = game:GetService("TweenService"):Create(Main, TweenInfo.new(0.2, Enum.EasingStyle.Quad), {Position = UDim2.new(0.372, 0, 0.763, 0)})
+    local Tween2 = game:GetService("TweenService"):Create(Main, TweenInfo.new(0.2, Enum.EasingStyle.Quad), {Position = UDim2.new(0.4, 0, 0.75, 0)})
     Sound:Play()
     Tween1:Play()
     Tween2:Play()
