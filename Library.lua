@@ -339,7 +339,7 @@ function Library:CreateMain(Options)
 				BackgroundTransparency = 1.000,
 				BorderSizePixel = 0,
 				Position = UDim2.new(0.0272727273, 0, 0, 0),
-				Size = UDim2.new(0.973, 0, 0, 35),
+				Size = UDim2.new(0.980, 0, 0, 35),
 				Image = "rbxassetid://3570695787",
 				ImageColor3 = Themes.SectionContrast,
 				ScaleType = Enum.ScaleType.Slice,
