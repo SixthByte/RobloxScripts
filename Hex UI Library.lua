@@ -111,7 +111,7 @@ function HexUI:CreateMain(Options)
 	local startPos
 	local function update(input)
 		local delta = input.Position - dragStart
-		Main.Motherframe:TweenPosition(UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y), 'Out', 'Linear', 0.01, true)
+		Main.Motherframe:TweenPosition(UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y), 'Out', 'Linear', 0.001, true)
 	end
 	Main.Motherframe.InputBegan:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -174,7 +174,7 @@ function HexUI:CreateMain(Options)
     	    
     	    Section.Section = Instance.new("Frame")
     	    Section.Section.Name = Name
-        	Section.Section.Parent = Category
+        	Section.Section.Parent = Category.Container
         	Section.Section.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
         	Section.Section.BorderColor3 = Color3.fromRGB(0, 75, 255)
         	Section.Section.BorderSizePixel = 0
@@ -191,8 +191,14 @@ function HexUI:CreateMain(Options)
         	Section.SectionTitle.Text = Name
         	Section.SectionTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
         	Section.SectionTitle.TextSize = 24.000
-        end
+        	
+        	return Section
+    	end
+        
+        return Category
 	end
+	
+	return Main
 end
 
 return HexUI
