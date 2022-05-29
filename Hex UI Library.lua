@@ -28,90 +28,92 @@ function HexUI:CreateMain(Options)
 	local Main = {}
 	local firstCategory = true
 	
-	Main.MainUI = Instance.new("ScreenGui")
-    Main.MainUI.Name = Options.projName
-	Main.MainUI.Parent = game.CoreGui
-	Main.MainUI.ZIndexBehavior = Enum.ZIndexBehavior.Global
-	
-	Main.Motherframe = Instance.new("Frame")
-    Main.Motherframe.Name = "Motherframe"
-	Main.Motherframe.Parent = Main.MainUI
-	Main.Motherframe.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
-	Main.Motherframe.Position = UDim2.new(0.0767304301, 0, 0.201271191, 0)
-	Main.Motherframe.Size = UDim2.new(0, 493, 0, 450)
-	
-    Main.Shadow = Instance.new("ImageLabel")
-    Main.Shadow.Name = "Shadow"
-	Main.Shadow.Parent = Main.Motherframe
-	Main.Shadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	Main.Shadow.BackgroundTransparency = 1.000
-	Main.Shadow.Position = UDim2.new(-0.0547667332, 0, -0.0541666672, 0)
-	Main.Shadow.Size = UDim2.new(0, 546, 0, 498)
-	Main.Shadow.ZIndex = -10
-	Main.Shadow.Image = "rbxassetid://7666162633"
-	Main.Shadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
-	
-	Main.UICorner = Instance.new("UICorner")
-	Main.UICorner.Parent = Main.Motherframe
-	
-	Main.Title = Instance.new("TextLabel")
-    Main.Title.Name = Options.UIName
-	Main.Title.Parent = Main.Motherframe
-	Main.Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	Main.Title.BackgroundTransparency = 1.000
-	Main.Title.Position = UDim2.new(0.0243407711, 0, 0.0133333337, 0)
-	Main.Title.Size = UDim2.new(0, 468, 0, 36)
-	Main.Title.Font = Enum.Font.Gotham
-	Main.Title.Text = Options.UIName
-	Main.Title.TextColor3 = Color3.fromRGB(255, 255, 255)
-	Main.Title.TextSize = 30.000
-	Main.Title.TextWrapped = true
-	Main.Title.TextXAlignment = Enum.TextXAlignment.Left
-
-	Main.TitleLine = Instance.new("Frame")
-    Main.TitleLine.Name = "TitleLine"
-	Main.TitleLine.Parent = Main.Motherframe
-	Main.TitleLine.BackgroundColor3 = Color3.fromRGB(0, 75, 255)
-	Main.TitleLine.BorderSizePixel = 0
-	Main.TitleLine.Position = UDim2.new(0, 0, 0.106666669, 0)
-	Main.TitleLine.Size = UDim2.new(0, 493, 0, 2)
-	
-	Main.SidebarLine = Instance.new("Frame")
-    Main.SidebarLine.Name = "SidebarLine"
-	Main.SidebarLine.Parent = Main.Motherframe
-	Main.SidebarLine.BackgroundColor3 = Color3.fromRGB(0, 75, 255)
-	Main.SidebarLine.BorderSizePixel = 0
-	Main.SidebarLine.Position = UDim2.new(0.239350915, 0, 0.111111112, 0)
-	Main.SidebarLine.Size = UDim2.new(0, 2, 0, 400)
-
-    Main.Sidebar = Instance.new("Frame")
-    Main.Sidebar.Name = "Sidebar"
-	Main.Sidebar.Parent = Main.Motherframe
-	Main.Sidebar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	Main.Sidebar.BackgroundTransparency = 1.000
-	Main.Sidebar.Position = UDim2.new(0.0121703856, 0, 0.126666665, 0)
-	Main.Sidebar.Size = UDim2.new(0, 105, 0, 386)
-
-    Main.UIListLayout = Instance.new("UIListLayout")
-    Main.UIListLayout.Parent = Main.Sidebar
-	Main.UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-	Main.UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-	Main.UIListLayout.Padding = UDim.new(0, 5)
-
-	Main.Interactables = Instance.new("Frame")
-    Main.Interactables.Name = "Interactables"
-	Main.Interactables.Parent = Main.Motherframe
-	Main.Interactables.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	Main.Interactables.BackgroundTransparency = 1.000
-	Main.Interactables.Position = UDim2.new(0.243000001, 0, 0.111000001, 0)
-	Main.Interactables.Size = UDim2.new(0, 367, 0, 393)
+	Main.MainUI = HexUI:Create("ScreenGui", {
+    	Name = Options.projName,
+    	--Parent = game.CoreGui,
+    	ZIndexBehavior = Enum.ZIndexBehavior.Global,
+    	ResetOnSpawn = false,
+	})
+	Main.Motherframe = HexUI:Create("Frame", {
+    	Name = "Motherframe",
+        --Parent = MainUI,
+        BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+        Position = UDim2.new(0, 332, 0, 121),
+        Size = UDim2.new(0, 493, 0, 450),
+    })
+    Main.Shadow = HexUI:Create("ImageLabel", {
+        Name = "Shadow",
+    	--Parent = Motherframe,
+    	BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+    	BackgroundTransparency = 1.000,
+    	Position = UDim2.new(-0.0547667332, 0, -0.0541666672, 0),
+    	Size = UDim2.new(0, 546, 0, 498),
+    	ZIndex = -10,
+    	Image = "rbxassetid://7666162633",
+    	ImageColor3 = Color3.fromRGB(0, 0, 0),
+	})
+	Main.UICorner = HexUI:Create("UICorner", {
+	    --Parent = Motherframe,
+	})
+	Main.Title = HexUI:Create("TextLabel", {
+    	Name = "Title",
+    	--Parent = Motherframe,
+    	BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+    	BackgroundTransparency = 1.000,
+    	Position = UDim2.new(0.0243407711, 0, 0.0133333337, 0),
+    	Size = UDim2.new(0, 468, 0, 36),
+    	Font = Enum.Font.Gotham,
+    	Text = Options.UIName,
+    	TextColor3 = Color3.fromRGB(255, 255, 255),
+    	TextSize = 30.000,
+    	TextWrapped = true,
+    	TextXAlignment = Enum.TextXAlignment.Left,
+    })
+	Main.TitleLine = HexUI:Create("Frame", {
+    	Name = "TitleLine",
+    	--Parent = Motherframe,
+    	BackgroundColor3 = Color3.fromRGB(0, 75, 255),
+    	BorderSizePixel = 0,
+    	Position = UDim2.new(0, 0, 0.106666669, 0),
+    	Size = UDim2.new(0, 493, 0, 2),
+	})
+	Main.SidebarLine = HexUI:Create("Frame", {
+    	Name = "SidebarLine",
+    	--Parent = Motherframe,
+    	BackgroundColor3 = Color3.fromRGB(0, 75, 255),
+    	BorderSizePixel = 0,
+    	Position = UDim2.new(0.239350915, 0, 0.111111112, 0),
+    	Size = UDim2.new(0, 2, 0, 400),
+    })
+    Main.Sidebar = HexUI:Create("Frame", {
+        Name = "Sidebar",
+        --Parent = Motherframe,
+    	BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+    	BackgroundTransparency = 1.000,
+    	Position = UDim2.new(0.0121703856, 0, 0.126666665, 0),
+    	Size = UDim2.new(0, 105, 0, 386),
+    })
+    Main.UIListLayout = HexUI:Create("UIListLayout", {
+        --Parent = Sidebar,
+    	HorizontalAlignment = Enum.HorizontalAlignment.Center,
+    	SortOrder = Enum.SortOrder.LayoutOrder,
+    	Padding = UDim.new(0, 5),
+    })
+	Main.Interactables = HexUI:Create("Frame", {
+    	Name = "Interactables",
+    	--Parent = Motherframe,
+    	BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+    	BackgroundTransparency = 1.000,
+    	Position = UDim2.new(0.243000001, 0, 0.111000001, 0),
+    	Size = UDim2.new(0, 367, 0, 393),
+	})
 	
 	local dragInput
 	local dragStart
 	local startPos
 	local function update(input)
 		local delta = input.Position - dragStart
-		Main.Motherframe:TweenPosition(UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y), 'Out', 'Linear', 0.001, true)
+		Main.Motherframe:TweenPosition(UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y), 'Out', 'Linear', 0.01, true)
 	end
 	Main.Motherframe.InputBegan:Connect(function(input)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -135,7 +137,7 @@ function HexUI:CreateMain(Options)
 		end
 	end)
 
-	function Main:CreateCategory(Name)
+	function HexUI:CreateCategory(Name)
         if Name == nil then
             warn("Category name not specified.")
             return
@@ -143,61 +145,73 @@ function HexUI:CreateMain(Options)
         
         local Category = {}
         
-        Category.NewCategory = Instance.new("TextButton")
-        Category.NewCategory.Name = Name
-    	Category.NewCategory.Parent = Main.Sidebar
-    	Category.NewCategory.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    	Category.NewCategory.BackgroundTransparency = 1.000
-    	Category.NewCategory.Position = UDim2.new(0.0571428575, 0, 0, 0)
-    	Category.NewCategory.Size = UDim2.new(0, 99, 0, 25)
-    	Category.NewCategory.Font = Enum.Font.Gotham
-    	Category.NewCategory.Text = Name
-    	Category.NewCategory.TextColor3 = Color3.fromRGB(255, 255, 255)
-    	Category.NewCategory.TextSize = 19.000
-    	Category.NewCategory.TextWrapped = true
-    	Category.NewCategory.TextXAlignment = Enum.TextXAlignment.Left
-    	
-    	Category.Container = Instance.new("ScrollingFrame")
-    	Category.Container.Name = Name
-    	Category.Container.Parent = Main.Interactables
-    	Category.Container.Active = true
-    	Category.Container.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    	Category.Container.BackgroundTransparency = 1.000
-    	Category.Container.BorderSizePixel = 0
-    	Category.Container.Size = UDim2.new(1, 0, 1, 0)
-    	Category.Container.CanvasSize = UDim2.new(0, 0, 0, 393)
-    	Category.Container.ScrollBarThickness = 6
+        Category.NewCategory = HexUI:Create("TextButton", {
+            Name = Name,
+        	--Parent = Sidebar,
+        	BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+        	BackgroundTransparency = 1.000,
+        	Position = UDim2.new(0.0571428575, 0, 0, 0),
+        	Size = UDim2.new(0, 99, 0, 25),
+        	Font = Enum.Font.Gotham,
+        	Text = Name,
+        	TextColor3 = Color3.fromRGB(255, 255, 255),
+        	TextSize = 19.000,
+        	TextWrapped = true,
+        	TextXAlignment = Enum.TextXAlignment.Left,
+    	})
+    	Category.Container = HexUI:Create("ScrollingFrame", {
+    	    Name = Name,
+    	    Active = true,
+    	    BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+    	    BackgroundTransparency = 1.000,
+    	    BorderSizePixel = 0,
+    	    Size = UDim2.new(1, 0, 1, 0),
+    	    CanvasSize = UDim2.new(0, 0, 0, 393),
+    	    ScrollBarThickness = 6,
+    	})
     	
     	function Category:CreateSection(Name)
     	    
-    	    local Section = {}
-    	    
-    	    Section.Section = Instance.new("Frame")
-    	    Section.Section.Name = Name
-        	Section.Section.Parent = Category.Container
-        	Section.Section.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
-        	Section.Section.BorderColor3 = Color3.fromRGB(0, 75, 255)
-        	Section.Section.BorderSizePixel = 0
-        	Section.Section.Position = UDim2.new(0.019073572, 0, 0.00670059305, 0)
-        	Section.Section.Size = UDim2.new(0, 347, 0, 296)
-    	    
-	        Section.SectionTitle = Instance.new("TextLabel")
-    	    Section.SectionTitle.Name = Name
-        	Section.SectionTitle.Parent = Section.Section
-        	Section.SectionTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-        	Section.SectionTitle.BackgroundTransparency = 1.000
-        	Section.SectionTitle.Size = UDim2.new(0, 345, 0, 31)
-        	Section.SectionTitle.Font = Enum.Font.Gotham
-        	Section.SectionTitle.Text = Name
-        	Section.SectionTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-        	Section.SectionTitle.TextSize = 24.000
-        	
-        	return Section
-    	end
-        
-        return Category
+            local Section = {}
+            
+            Section.Section = HexUI:Create("Frame", {
+                Name = Name,
+    			BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+    			BorderColor3 = Color3.fromRGB(0, 75, 255),
+    			BorderSizePixel = 0,
+    			Position = UDim2.new(0.019073572, 0, 0.00670059305, 0),
+    			Size = UDim2.new(0, 347, 0, 296),
+    		})
+            Section.SectionTitle = HexUI:Create("TextLabel", {
+                Name = Name,
+    			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+    			BackgroundTransparency = 1.000,
+    			Size = UDim2.new(0, 345, 0, 31),
+    			Font = Enum.Font.Gotham,
+    			Text = Name,
+    			TextColor3 = Color3.fromRGB(255, 255, 255),
+    			TextSize = 24.000,
+    		})
+    		
+    		Section.Section.Parent = Category.Container
+    		Section.SectionTitle.Parent = Section.Section
+    		return Section
+        end
+    	
+    	Category.NewCategory.Parent = Main.Sidebar
+    	Category.Container.Parent = Main.Interactables
+    	firstCategory = false
+    	return Category
 	end
-	
+    Main.MainUI.Parent = game:GetService("CoreGui")
+	Main.Motherframe.Parent = Main.MainUI
+	Main.Shadow.Parent = Main.Motherframe
+	Main.UICorner.Parent = Main.Motherframe
+	Main.Title.Parent = Main.Motherframe
+	Main.TitleLine.Parent = Main.Motherframe
+	Main.Sidebar.Parent = Main.Motherframe
+	Main.SidebarLine.Parent = Main.Motherframe
+	Main.Interactables.Parent = Main.Motherframe
 	return Main
 end
 
