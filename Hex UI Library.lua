@@ -305,70 +305,7 @@ function HexUI:CreateMain(Options)
             function Section:Create(Type, Name, Callback, Options)
                 local Interactables = {}
                 
-                if Type:lower() == "button" then
-                    Interactables.Button = HexUI:Create("Frame", {
-                        Name = "Button",
-                    	BackgroundColor3 = Color3.fromRGB(15, 15, 15),
-                    	BackgroundTransparency = 1.000,
-                    	BorderSizePixel = 0,
-                    	Position = UDim2.new(0.0260000005, 0, 0.150000006, 0),
-                    	Size = UDim2.new(0, 328, 0, 33),
-                    })
-                    Interactables.Base = HexUI:Create("ImageButton", {
-                        Name = "Base",
-                        AnchorPoint = Vector2.new(0.5, 0),
-            			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-            			BackgroundTransparency = 1.000,
-            			Size = UDim2.new(1, 0, 1, 0),
-            			Image = "rbxassetid://3570695787",
-            			ImageColor3 = Color3.fromRGB(20, 20, 20),
-            			Position = UDim2.new(0.5, 0, 0, 0),
-            			ScaleType = Enum.ScaleType.Slice,
-            			SliceCenter = Rect.new(100, 100, 100, 100),
-            			SliceScale = 0.040,
-                    })
-                    Interactables.ButtonText = HexUI:Create("TextLabel", {
-                        Name = "ButtonText",
-            			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-            			BackgroundTransparency = 1.000,
-            			BorderSizePixel = 0,
-            			Size = UDim2.new(1, 0, 1, 0),
-            			Font = Enum.Font.Gotham,
-            			Text = Name,
-            			TextColor3 = Color3.fromRGB(255, 255, 255),
-            			TextSize = 19.000,
-                    })
-                    
-                    function Interactables:SetButtonText(Text)
-						Interactables.ButtonText.Text = Text
-                    end
-				    
-				    Interactables.Base.MouseButton1Click:Connect(function()
-
-						if Options then
-							if Options.animated then 
-								TS:Create(Interactables.Base, TweenInfo.new(0.06), {
-									Size = UDim2.new(0.96, 0, 0.9, 0)
-								}):Play()
-								wait(.07)
-								TS:Create(Interactables.Base, TweenInfo.new(0.06), {
-									Size = UDim2.new(1, 0, 1, 0)
-								}):Play()			
-							end
-						end
-
-						if Callback then 
-							Callback()
-						end
-
-					end)
-                    Category.Container.CanvasSize = Category.Container.CanvasSize + UDim2.new(0,0,0,41)
-                    
-                    Interactables.Button.Parent = Category.Container
-                    Interactables.Base.Parent = Interactables.Button
-                    Interactables.ButtonText.Parent = Interactables.Base
-                    
-                elseif Type:lower() == "toggle" then
+                if Type:lower() == "toggle" then
                     
                     local State = false
                     
@@ -484,6 +421,69 @@ function HexUI:CreateMain(Options)
                     Interactables.ToggleText.Parent = Interactables.Base
                     Interactables.ToggleOuter.Parent = Interactables.Base
                     Interactables.ToggleInner.Parent = Interactables.ToggleOuter
+		elseif Type:lower() == "button" then
+                    Interactables.Button = HexUI:Create("Frame", {
+                        Name = "Button",
+                    	BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+                    	BackgroundTransparency = 1.000,
+                    	BorderSizePixel = 0,
+                    	Position = UDim2.new(0.0260000005, 0, 0.150000006, 0),
+                    	Size = UDim2.new(0, 328, 0, 33),
+                    })
+                    Interactables.Base = HexUI:Create("ImageButton", {
+                        Name = "Base",
+                        AnchorPoint = Vector2.new(0.5, 0),
+            			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+            			BackgroundTransparency = 1.000,
+            			Size = UDim2.new(1, 0, 1, 0),
+            			Image = "rbxassetid://3570695787",
+            			ImageColor3 = Color3.fromRGB(20, 20, 20),
+            			Position = UDim2.new(0.5, 0, 0, 0),
+            			ScaleType = Enum.ScaleType.Slice,
+            			SliceCenter = Rect.new(100, 100, 100, 100),
+            			SliceScale = 0.040,
+                    })
+                    Interactables.ButtonText = HexUI:Create("TextLabel", {
+                        Name = "ButtonText",
+            			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+            			BackgroundTransparency = 1.000,
+            			BorderSizePixel = 0,
+            			Size = UDim2.new(1, 0, 1, 0),
+            			Font = Enum.Font.Gotham,
+            			Text = Name,
+            			TextColor3 = Color3.fromRGB(255, 255, 255),
+            			TextSize = 19.000,
+                    })
+                    
+                    function Interactables:SetButtonText(Text)
+						Interactables.ButtonText.Text = Text
+                    end
+				    
+				    Interactables.Base.MouseButton1Click:Connect(function()
+
+						if Options then
+							if Options.animated then 
+								TS:Create(Interactables.Base, TweenInfo.new(0.06), {
+									Size = UDim2.new(0.96, 0, 0.9, 0)
+								}):Play()
+								wait(.07)
+								TS:Create(Interactables.Base, TweenInfo.new(0.06), {
+									Size = UDim2.new(1, 0, 1, 0)
+								}):Play()			
+							end
+						end
+
+						if Callback then 
+							Callback()
+						end
+
+					end)
+                    Category.Container.CanvasSize = Category.Container.CanvasSize + UDim2.new(0,0,0,41)
+                    
+                    Interactables.Button.Parent = Category.Container
+                    Interactables.Base.Parent = Interactables.Button
+                    Interactables.ButtonText.Parent = Interactables.Base
+                    
                 elseif Type:lower() == "textbox" then
                     
                     local Text
