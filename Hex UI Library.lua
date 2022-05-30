@@ -372,8 +372,6 @@ function HexUI:CreateMain(Options)
                     
                     local State = false
                     
-                    local Interactables = {}
-                    
                     Interactables.Toggle = HexUI:Create("Frame", {
                         Name = "Toggle",
                     	BackgroundColor3 = Color3.fromRGB(15, 15, 15),
