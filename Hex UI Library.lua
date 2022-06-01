@@ -233,7 +233,7 @@ function HexUI:CreateMain(Options)
         	Font = Enum.Font.Gotham,
         	Text = Name,
         	TextColor3 = Color3.fromRGB(100, 100, 100),
-        	TextSize = 19.000,
+        	TextSize = 18.000,
         	TextWrapped = true,
         	TextXAlignment = Enum.TextXAlignment.Left,
     	})
@@ -383,7 +383,7 @@ function HexUI:CreateMain(Options)
             			Font = Enum.Font.Gotham,
             			Text = Name,
             			TextColor3 = Color3.fromRGB(255, 255, 255),
-            			TextSize = 19.000,
+            			TextSize = 16.000,
                     })
                     
                     function Interactables:SetButtonText(Text)
@@ -449,7 +449,7 @@ function HexUI:CreateMain(Options)
                     	Font = Enum.Font.Gotham,
                     	Text = Name,
                     	TextColor3 = Color3.fromRGB(255, 255, 255),
-                        TextSize = 19.000,
+                        TextSize = 16.000,
                     	TextXAlignment = Enum.TextXAlignment.Left,
                     })
                     Interactables.ToggleOuter = HexUI:Create("ImageButton", {
@@ -564,7 +564,7 @@ function HexUI:CreateMain(Options)
             			Font = Enum.Font.Gotham,
             			Text = Name,
             			TextColor3 = Color3.fromRGB(255, 255, 255),
-            			TextSize = 19.000,
+            			TextSize = 16.000,
             			TextXAlignment = Enum.TextXAlignment.Left,
                     })
                     Interactables.Input = HexUI:Create("TextBox", {
@@ -572,7 +572,7 @@ function HexUI:CreateMain(Options)
                         AnchorPoint = Vector2.new(1,0),
             			BackgroundColor3 = Color3.fromRGB(15, 15, 15),
             			Position = UDim2.new(0.99, 0, 0.128000259, 0),
-            			Size = UDim2.new(0.325731754, 51, 0.75, 0),
+            			Size = UDim2.new(0.325731754, 11, 0.75, 0),
             			Font = Enum.Font.Gotham,
             			PlaceholderText = Options.placeholder,
             			Text = "",
@@ -591,7 +591,7 @@ function HexUI:CreateMain(Options)
                     	Font = Enum.Font.Gotham,
                     	Text = "",
                     	TextColor3 = Color3.fromRGB(100, 100, 100),
-                    	TextSize = 19.000,
+                    	TextSize = 16.000,
                     	TextWrapped = true,
                     	TextXAlignment = Enum.TextXAlignment.Center,
                 	})
@@ -609,7 +609,7 @@ function HexUI:CreateMain(Options)
                     
                     Interactables.Input.FocusLost:Connect(function()
                         TS:Create(Interactables.Input, TweenInfo.new(0.2), {
-                            Size = UDim2.new(0.325731754, 51, 0.75, 0)
+                            Size = UDim2.new(0.325731754, 11, 0.75, 0)
                         }):Play()
                         TS:Create(Interactables.TextboxText, TweenInfo.new(0.1), {
                             TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -651,7 +651,7 @@ function HexUI:CreateMain(Options)
                     	SliceScale = 0.040,
                 	})
                 	Interactables.Label = HexUI:Create("TextLabel", {
-                        Name = "TextboxText",
+                        Name = "TextlabelText",
                     	BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                     	BackgroundTransparency = 1.000,
                     	BorderSizePixel = 0,
@@ -660,7 +660,7 @@ function HexUI:CreateMain(Options)
                     	Font = Enum.Font.Gotham,
                     	Text = "",
                     	TextColor3 = Color3.fromRGB(255, 255, 255),
-                    	TextSize = 19.000,
+                    	TextSize = 16.000,
                     	TextXAlignment = Enum.TextXAlignment.Left,
                 	})
                 	
@@ -710,7 +710,7 @@ function HexUI:CreateMain(Options)
                         Font = Enum.Font.Gotham,
                         Text = Name,
                         TextColor3 = Color3.fromRGB(255, 255, 255),
-                        TextSize = 19.000,
+                        TextSize = 16.000,
                         TextXAlignment = Enum.TextXAlignment.Left,
                 	})
                 	Interactables.Input = HexUI:Create("ImageButton", {
@@ -843,7 +843,7 @@ function HexUI:CreateMain(Options)
                         Font = Enum.Font.Gotham,
                         Text = Name,
                         TextColor3 = Color3.fromRGB(255, 255, 255),
-                        TextSize = 19.000,
+                        TextSize = 16.000,
                         TextXAlignment = Enum.TextXAlignment.Left,
                 	})
                 	Interactables.Amount = HexUI:Create("TextBox", {
@@ -1153,7 +1153,7 @@ function HexUI:CreateMain(Options)
 							Font = Enum.Font.Gotham,
 							Text = Name, --
 							TextColor3 = Color3.fromRGB(255,255,255),
-							TextSize = 19.000,
+							TextSize = 16.000,
 							TextXAlignment = Enum.TextXAlignment.Left,
 						})
 
@@ -1511,7 +1511,7 @@ function HexUI:CreateMain(Options)
 							PlaceholderColor3 = Color3.fromRGB(140, 140, 140),
 							Text = Name, --tostring(selectedvalue)
 							TextColor3 = Color3.fromRGB(255,255,255),
-							TextSize = 19.000,
+							TextSize = 16.000,
 							TextTruncate = Enum.TextTruncate.AtEnd,
 							TextXAlignment = Enum.TextXAlignment.Left,
 						})
@@ -1628,7 +1628,7 @@ function HexUI:CreateMain(Options)
 									Font = Enum.Font.Gotham,
 									Text = v,
 									TextColor3 = Color3.fromRGB(255,255,255),
-									TextSize = 19.000,
+									TextSize = 16.000,
 								})
 
 								button.Parent = Interactables.list
@@ -1915,7 +1915,7 @@ function HexUI:CreateMain(Options)
                         Font = Enum.Font.Gotham,
                         Text = Name,
                         TextColor3 = Color3.fromRGB(255, 255, 255),
-                        TextSize = 19.000,
+                        TextSize = 16.000,
                         TextXAlignment = Enum.TextXAlignment.Left,
 					})
 					Interactables.Input = HexUI:Create("ImageButton", {
