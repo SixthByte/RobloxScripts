@@ -20,9 +20,9 @@ function HexUI:CreateMain(Options)
         warn("projName not specified.")
         return
     end
-    if Options.UIName == nil then
-        warn("UIName not specified.")
-        return
+    if Options.projName and game.CoreGui:FindFirstChild(Options.projName) and Options.OnlyOne then
+    	warn("Script already executed.")
+    	return
     end
     local nameforcheck = Options.projName
 	local Main = {}
@@ -37,8 +37,9 @@ function HexUI:CreateMain(Options)
 	})
 	Main.Motherframe = HexUI:Create("Frame", {
     	Name = "Motherframe",
+    	AnchorPoint = Vector2.new(0.5,0),
         BackgroundColor3 = Color3.fromRGB(15, 15, 15),
-        Position = UDim2.new(0, 332, 0, 121),
+        Position = UDim2.new(0.2, 0, 0.1, 0),
         Size = UDim2.new(0, 493, 0, 450),
     })
     OldPos = Main.Motherframe.Position
@@ -56,7 +57,7 @@ function HexUI:CreateMain(Options)
     	Position = UDim2.new(-0.0547667332, 0, -0.0541666672, 0),
     	Size = UDim2.new(0, 546, 0, 498),
     	ZIndex = -10,
-    	Image = "rbxassetid://7666162633",
+    	Image = "rbxassetid://9772641843",
     	ImageColor3 = Color3.fromRGB(0, 0, 0),
 	})
 	Main.UICorner = HexUI:Create("UICorner", {})
@@ -116,6 +117,40 @@ function HexUI:CreateMain(Options)
     	Position = UDim2.new(0.243000001, 0, 0.111000001, 0),
     	Size = UDim2.new(0, 367, 0, 393),
 	})
+	Main.SearchBar = HexUI:Create("TextBox", {
+    	Name = "Searchbar",
+        BackgroundColor3 = Color3.fromRGB(20, 20, 20),
+        BorderSizePixel = 0,
+        Position = UDim2.new(0.592898667, 0, 0.0199999996, 0),
+        Size = UDim2.new(0, 187, 0, 30),
+        Font = Enum.Font.Gotham,
+        PlaceholderColor3 = Color3.fromRGB(120, 120, 120),
+        PlaceholderText = "Search...",
+        Text = "",
+        TextColor3 = Color3.fromRGB(255, 255, 255),
+        TextSize = 17.000,
+        TextXAlignment = Enum.TextXAlignment.Right,
+        Visible = false,
+	})
+	Main.SearchCorner = HexUI:Create("UICorner", {})
+	
+	if Options.Searchbar then
+	    Main.Title.Size = UDim2.new(0,270,0,36)
+        Main.SearchBar.Visible = true
+	end
+
+    if not Main.Title.TextFits and Options.ResizeTitle then
+        local ResizeText = game:GetService'RunService'.RenderStepped:connect(function()
+            if not Main.Title.TextFits then
+                Main.Title.TextSize = Main.Title.TextSize - 1
+            elseif Main.Title.TextFits then
+                if ResizeText then
+                    ResizeText:Disconnect()
+                    ResizeText = nil
+                end
+            end
+        end)
+    end
 	
 	local dragInput
 	local dragStart
@@ -148,30 +183,39 @@ function HexUI:CreateMain(Options)
 		end
 	end)
 	
-    function Main:ToggleGui()
+    function HexUI:ToggleGui()
         if not dragging then
             if IsOpen then
                 IsOpen = false
                 Main.MotherframeE.Size = UDim2.new(0, 0, 0, 0)
-        	    TS:Create(Main.Motherframe, TweenInfo.new(0.35), {
-        			Position = UDim2.new(0.35, 0, -0.75, 0)
-        		}):Play()
-        		wait(0.35)
-        		Main.Motherframe.Position = UDim2.new(0.35, 0, -0.75, 0)
+                if not Options.RandomAnim then
+                    TS:Create(Main.Motherframe, TweenInfo.new(0.35), {
+                		Position = UDim2.new(0.5, 0, -0.75, 0)
+                	}):Play()
+                	wait(0.35)
+                	Main.Motherframe.Position = UDim2.new(0.5, 0, -0.75, 0)
+                elseif Options.RandomAnim then
+                    local RandomXPos = math.random(1,100) / 100
+                    TS:Create(Main.Motherframe, TweenInfo.new(0.35), {
+                		Position = UDim2.new(RandomXPos, 0, -0.75, 0)
+                	}):Play()
+                	wait(0.35)
+                	Main.Motherframe.Position = UDim2.new(RandomXPos, 0, -0.75, 0)
+                end
             elseif not IsOpen then
                 IsOpen = true
-    	        TS:Create(Main.Motherframe, TweenInfo.new(0.35), {
-        			Position = OldPos
-        		}):Play()
-        		wait(0.35)
-        		Main.MotherframeE.Size = UDim2.new(1, 0, 1, 0)
-        		Main.Motherframe.Position = OldPos
-        		OldPos = Main.Motherframe.Position
+        	       TS:Create(Main.Motherframe, TweenInfo.new(0.35), {
+            		Position = OldPos
+            	}):Play()
+            	wait(0.35)
+            	Main.MotherframeE.Size = UDim2.new(1, 0, 1, 0)
+            	Main.Motherframe.Position = OldPos
+            	OldPos = Main.Motherframe.Position
             end
         end
     end
 
-	function HexUI:CreateCategory(Name)
+	function Main:CreateCategory(Name)
         if Name == nil then
             warn("Category name not specified.")
             return
@@ -278,10 +322,13 @@ function HexUI:CreateMain(Options)
     		})
     		Section.Line = HexUI:Create("Frame", {
     		    Name = "Line",
-            	BackgroundColor3 = Color3.fromRGB(0, 75, 255),
+            	BackgroundColor3 = Color3.fromRGB(255, 255, 255),
             	BorderSizePixel = 0,
             	Position = UDim2.new(0.0463768132, 0, 1, 0),
             	Size = UDim2.new(0, 312, 0, 2),
+            })
+            Section.LineGradient = HexUI:Create("UIGradient", {
+                Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(15, 15, 15)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(0, 75, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(15, 15, 15))},
             })
             --[[Section.Objects = HexUI:Create("Frame", {
                 Name = "Objects",
@@ -305,125 +352,9 @@ function HexUI:CreateMain(Options)
             function Section:Create(Type, Name, Callback, Options)
                 local Interactables = {}
                 
-                if Type:lower() == "toggle" then
-                    
-                    local State = false
-                    
-                    Interactables.Toggle = HexUI:Create("Frame", {
-                        Name = "Toggle",
-                    	BackgroundColor3 = Color3.fromRGB(15, 15, 15),
-                    	BackgroundTransparency = 1.000,
-                    	BorderSizePixel = 0,
-                    	Position = UDim2.new(0.0260000005, 0, 0.289999992, 0),
-                    	Size = UDim2.new(0, 328, 0, 33),
-                    })
-                    Interactables.Base = HexUI:Create("ImageLabel", {
-                        Name = "Base",
-                    	BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-                    	BackgroundTransparency = 1.000,
-                    	BorderSizePixel = 0,
-                    	Size = UDim2.new(1, 0, 1, 0),
-                    	Image = "rbxassetid://3570695787",
-                    	ImageColor3 = Color3.fromRGB(20, 20, 20),
-                    	ScaleType = Enum.ScaleType.Slice,
-                    	SliceCenter = Rect.new(100, 100, 100, 100),
-                    	SliceScale = 0.040,
-                    })
-                    Interactables.ToggleText = HexUI:Create("TextLabel", {
-                        Name = "ToggleText",
-                    	BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-                    	BackgroundTransparency = 1.000,
-                    	BorderSizePixel = 0,
-                    	Position = UDim2.new(0.024390243, 0, 0, 0),
-                    	Size = UDim2.new(0.750000119, 0, 1, 0),
-                    	Font = Enum.Font.Gotham,
-                    	Text = "Toggle",
-                    	TextColor3 = Color3.fromRGB(255, 255, 255),
-                        TextSize = 19.000,
-                    	TextXAlignment = Enum.TextXAlignment.Left,
-                    })
-                    Interactables.ToggleOuter = HexUI:Create("ImageButton", {
-                        Name = "ToggleOuter",
-                    	BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-                    	BackgroundTransparency = 1.000,
-                    	Position = UDim2.new(0.829999983, 0, 0.140000001, 0),
-                    	Size = UDim2.new(0, 51, 0.699999988, 0),
-                    	Image = "rbxassetid://3570695787",
-                    	ImageColor3 = Color3.fromRGB(15, 15, 15),
-                    	ScaleType = Enum.ScaleType.Slice,
-                    	SliceCenter = Rect.new(100, 100, 100, 100),
-                    	SliceScale = 0.040,
-                    })
-                    Interactables.ToggleInner = HexUI:Create("ImageLabel", {
-                        Name = "ToggleInner",
-                    	BackgroundColor3 = Color3.fromRGB(255, 255, 255),
-                    	BackgroundTransparency = 1.000,
-                    	Size = UDim2.new(0.5, 0, 1, 0),
-                    	Image = "rbxassetid://3570695787",
-                    	ScaleType = Enum.ScaleType.Slice,
-                    	SliceCenter = Rect.new(100, 100, 100, 100),
-                    	SliceScale = 0.040,
-                    })
-                
-                    if Options then 
-						if Options.default then 
-							State = true 
-							TS:Create(Interactables.ToggleInner, TweenInfo.new(0.1), {
-								Position = UDim2.new(0.5, 0, 0, 0)
-							}):Play()
-							if Callback then 
-								Callback(State)
-							end
-						end
-                    end
-				    
-				    Interactables.ToggleOuter.MouseButton1Click:Connect(function()
-						State = not State 
-
-						if State then 
-							TS:Create(Interactables.ToggleInner, TweenInfo.new(0.1), {
-								Position = UDim2.new(0.5, 0, 0, 0)
-							}):Play()
-						else
-							TS:Create(Interactables.ToggleInner, TweenInfo.new(0.1), {
-								Position = UDim2.new(0, 0, 0, 0)
-							}):Play()
-						end
-
-						if Callback then 
-							Callback(State)
-						end
-						
-					    function Interactables:ChangeState(pp)
-    						if pp then 
-    							State = pp
-                                TS:Create(Interactables.ToggleInner, TweenInfo.new(0.1), {
-                                    Position = UDim2.new(0.5, 0, 0, 0)
-                                }):Play()
-                                if Callback then 
-                                    Callback(State)
-                                end
-    						else
-    							State = pp
-                                TS:Create(Interactables.ToggleInner, TweenInfo.new(0.1), {
-                                    Position = UDim2.new(0, 0, 0, 0)
-                                }):Play()
-                                if Callback then 
-                                    Callback(State)
-                                end
-    						end
-                        end
-					end)
-                    Category.Container.CanvasSize = Category.Container.CanvasSize + UDim2.new(0,0,0,41)
-                    
-                    Interactables.Toggle.Parent = Category.Container
-                    Interactables.Base.Parent = Interactables.Toggle
-                    Interactables.ToggleText.Parent = Interactables.Base
-                    Interactables.ToggleOuter.Parent = Interactables.Base
-                    Interactables.ToggleInner.Parent = Interactables.ToggleOuter
-		elseif Type:lower() == "button" then
+                if Type:lower() == "button" then
                     Interactables.Button = HexUI:Create("Frame", {
-                        Name = "Button",
+                        Name = Name,
                     	BackgroundColor3 = Color3.fromRGB(15, 15, 15),
                     	BackgroundTransparency = 1.000,
                     	BorderSizePixel = 0,
@@ -436,7 +367,7 @@ function HexUI:CreateMain(Options)
             			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
             			BackgroundTransparency = 1.000,
             			Size = UDim2.new(1, 0, 1, 0),
-            			Image = "rbxassetid://3570695787",
+            			Image = "rbxassetid://9772649226",
             			ImageColor3 = Color3.fromRGB(20, 20, 20),
             			Position = UDim2.new(0.5, 0, 0, 0),
             			ScaleType = Enum.ScaleType.Slice,
@@ -484,12 +415,127 @@ function HexUI:CreateMain(Options)
                     Interactables.Base.Parent = Interactables.Button
                     Interactables.ButtonText.Parent = Interactables.Base
                     
+                elseif Type:lower() == "toggle" then
+                    
+                    local State = false
+                    
+                    Interactables.Toggle = HexUI:Create("Frame", {
+                        Name = Name,
+                    	BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+                    	BackgroundTransparency = 1.000,
+                    	BorderSizePixel = 0,
+                    	Position = UDim2.new(0.0260000005, 0, 0.289999992, 0),
+                    	Size = UDim2.new(0, 328, 0, 33),
+                    })
+                    Interactables.Base = HexUI:Create("ImageLabel", {
+                        Name = "Base",
+                    	BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                    	BackgroundTransparency = 1.000,
+                    	BorderSizePixel = 0,
+                    	Size = UDim2.new(1, 0, 1, 0),
+                    	Image = "rbxassetid://9772649226",
+                    	ImageColor3 = Color3.fromRGB(20, 20, 20),
+                    	ScaleType = Enum.ScaleType.Slice,
+                    	SliceCenter = Rect.new(100, 100, 100, 100),
+                    	SliceScale = 0.040,
+                    })
+                    Interactables.ToggleText = HexUI:Create("TextLabel", {
+                        Name = "ToggleText",
+                    	BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                    	BackgroundTransparency = 1.000,
+                    	BorderSizePixel = 0,
+                    	Position = UDim2.new(0.024390243, 0, 0, 0),
+                    	Size = UDim2.new(0.750000119, 0, 1, 0),
+                    	Font = Enum.Font.Gotham,
+                    	Text = Name,
+                    	TextColor3 = Color3.fromRGB(255, 255, 255),
+                        TextSize = 19.000,
+                    	TextXAlignment = Enum.TextXAlignment.Left,
+                    })
+                    Interactables.ToggleOuter = HexUI:Create("ImageButton", {
+                        Name = "ToggleOuter",
+                    	BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                    	BackgroundTransparency = 1.000,
+                    	Position = UDim2.new(0.829999983, 0, 0.140000001, 0),
+                    	Size = UDim2.new(0, 51, 0.699999988, 0),
+                    	Image = "rbxassetid://9772649226",
+                    	ImageColor3 = Color3.fromRGB(15, 15, 15),
+                    	ScaleType = Enum.ScaleType.Slice,
+                    	SliceCenter = Rect.new(100, 100, 100, 100),
+                    	SliceScale = 0.040,
+                    })
+                    Interactables.ToggleInner = HexUI:Create("ImageLabel", {
+                        Name = "ToggleInner",
+                    	BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                    	BackgroundTransparency = 1.000,
+                    	Size = UDim2.new(0.5, 0, 1, 0),
+                    	Image = "rbxassetid://9772649226",
+                    	ScaleType = Enum.ScaleType.Slice,
+                    	SliceCenter = Rect.new(100, 100, 100, 100),
+                    	SliceScale = 0.040,
+                    })
+                
+                    if Options then 
+						if Options.default then 
+							State = true 
+							TS:Create(Interactables.ToggleInner, TweenInfo.new(0.1), {
+								Position = UDim2.new(0.5, 0, 0, 0)
+							}):Play()
+							if Callback then 
+								Callback(State)
+							end
+						end
+                    end
+				    
+				    Interactables.ToggleOuter.MouseButton1Click:Connect(function()
+						State = not State 
+
+						if State then 
+							TS:Create(Interactables.ToggleInner, TweenInfo.new(0.1), {
+								Position = UDim2.new(0.5, 0, 0, 0)
+							}):Play()
+						else
+							TS:Create(Interactables.ToggleInner, TweenInfo.new(0.1), {
+								Position = UDim2.new(0, 0, 0, 0)
+							}):Play()
+						end
+
+						if Callback then 
+							Callback(State)
+						end
+				    end)
+				    function Interactables:ChangeState(pp)
+    					if pp then 
+    						State = pp
+                            TS:Create(Interactables.ToggleInner, TweenInfo.new(0.1), {
+                                Position = UDim2.new(0.5, 0, 0, 0)
+                            }):Play()
+                            if Callback then 
+                                Callback(State)
+                            end
+    					else
+    						State = pp
+                            TS:Create(Interactables.ToggleInner, TweenInfo.new(0.1), {
+                                Position = UDim2.new(0, 0, 0, 0)
+                            }):Play()
+                            if Callback then 
+                                Callback(State)
+                            end
+    					end
+                    end
+                    Category.Container.CanvasSize = Category.Container.CanvasSize + UDim2.new(0,0,0,41)
+                    
+                    Interactables.Toggle.Parent = Category.Container
+                    Interactables.Base.Parent = Interactables.Toggle
+                    Interactables.ToggleText.Parent = Interactables.Base
+                    Interactables.ToggleOuter.Parent = Interactables.Base
+                    Interactables.ToggleInner.Parent = Interactables.ToggleOuter
                 elseif Type:lower() == "textbox" then
                     
                     local Text
                     
                     Interactables.Textbox = HexUI:Create("Frame", {
-                        Name = "Textbox",
+                        Name = Name,
             			BackgroundColor3 = Color3.fromRGB(15, 15, 15),
             			BackgroundTransparency = 1.000,
             			BorderSizePixel = 0,
@@ -502,7 +548,7 @@ function HexUI:CreateMain(Options)
             			BackgroundTransparency = 1.000,
             			BorderSizePixel = 0,
             			Size = UDim2.new(1, 0, 1, 0),
-            			Image = "rbxassetid://3570695787",
+            			Image = "rbxassetid://9772649226",
             			ImageColor3 = Color3.fromRGB(20, 20, 20),
             			ScaleType = Enum.ScaleType.Slice,
             			SliceCenter = Rect.new(100, 100, 100, 100),
@@ -585,7 +631,7 @@ function HexUI:CreateMain(Options)
                     Interactables.UICornerInput.Parent = Interactables.InputButton
                 elseif Type:lower() == "textlabel" then
                     Interactables.TextLabel = HexUI:Create("Frame", {
-                        Name = "Label",
+                        Name = Name,
                     	BackgroundColor3 = Color3.fromRGB(15, 15, 15),
                     	BackgroundTransparency = 1.000,
                     	BorderSizePixel = 0,
@@ -598,7 +644,7 @@ function HexUI:CreateMain(Options)
                     	BackgroundTransparency = 1.000,
                     	BorderSizePixel = 0,
                     	Size = UDim2.new(1, 0, 1, 0),
-                    	Image = "rbxassetid://3570695787",
+                    	Image = "rbxassetid://9772649226",
                     	ImageColor3 = Color3.fromRGB(20, 20, 20),
                     	ScaleType = Enum.ScaleType.Slice,
                     	SliceCenter = Rect.new(100, 100, 100, 100),
@@ -635,7 +681,7 @@ function HexUI:CreateMain(Options)
                     Interactables.Label.Parent = Interactables.Base
                 elseif Type:lower() == "keybind" then
                     Interactables.Keybind = HexUI:Create("Frame", {
-                        Name = "Keybind",
+                        Name = Name,
                         BackgroundColor3 = Color3.fromRGB(15, 15, 15),
                         BackgroundTransparency = 1.000,
                         BorderSizePixel = 0,
@@ -648,7 +694,7 @@ function HexUI:CreateMain(Options)
                         BackgroundTransparency = 1.000,
                         BorderSizePixel = 0,
                         Size = UDim2.new(1, 0, 1, 0),
-                        Image = "rbxassetid://3570695787",
+                        Image = "rbxassetid://9772649226",
                         ImageColor3 = Color3.fromRGB(20, 20, 20),
                         ScaleType = Enum.ScaleType.Slice,
                         SliceCenter = Rect.new(100, 100, 100, 100),
@@ -662,7 +708,7 @@ function HexUI:CreateMain(Options)
                         Position = UDim2.new(0.024390243, 0, 0, 0),
                         Size = UDim2.new(0.601219648, 0, 1, 0),
                         Font = Enum.Font.Gotham,
-                        Text = "Keybind",
+                        Text = Name,
                         TextColor3 = Color3.fromRGB(255, 255, 255),
                         TextSize = 19.000,
                         TextXAlignment = Enum.TextXAlignment.Left,
@@ -675,7 +721,7 @@ function HexUI:CreateMain(Options)
                         Size = UDim2.new(0.130999997, 66, 0.75, 0),
                         AutoButtonColor = false,
                         Selected = true,
-                        Image = "rbxassetid://3570695787",
+                        Image = "rbxassetid://9772649226",
                         ImageColor3 = Color3.fromRGB(15, 15, 15),
                         ScaleType = Enum.ScaleType.Slice,
                         SliceCenter = Rect.new(100, 100, 100, 100),
@@ -709,7 +755,7 @@ function HexUI:CreateMain(Options)
 						changing = true
 						Interactables.KeybindKey.Text = "..."
 						connection = game:GetService("UserInputService").InputBegan:Connect(function(i)
-							if i.UserInputType.Name == "Keyboard" and i.KeyCode ~= Enum.KeyCode.Backspace then
+							if i.UserInputType.Name == "Keyboard" then
 								Interactables.KeybindKey.Text = i.KeyCode.Name
 								bind = i.KeyCode
 								if connection then
@@ -718,18 +764,19 @@ function HexUI:CreateMain(Options)
 									wait(.1)
 									changing = false
 								end
-							elseif i.KeyCode == Enum.KeyCode.Backspace then
-								Interactables.KeybindKey.Text = "None"
-								bind = nil
-								if connection then
-									connection:Disconnect()
-									connection = nil 
-									wait(.1)
-									changing = false
-								end
 							end
 						end)
 					end)
+					Interactables.Input.MouseButton2Click:Connect(function()
+					    Interactables.KeybindKey.Text = "None"
+						bind = nil
+						if connection then
+							connection:Disconnect()
+							connection = nil 
+							wait(.1)
+							changing = false
+						end
+				    end)
 
 					inputconnection = game:GetService("UserInputService").InputBegan:Connect(function(i, GPE)
 						if bind and i.KeyCode == bind and not GPE and not connection then
@@ -764,9 +811,10 @@ function HexUI:CreateMain(Options)
 					local Max = Options.max or 0
 					local MoveConnection
 					local Value = 0
+					local LastNumber = Options.default or Min
 					
 					Interactables.Slider = HexUI:Create("Frame", {
-                	    Name = "Slider",
+                	    Name = Name,
                         BackgroundColor3 = Color3.fromRGB(15, 15, 15),
                         BackgroundTransparency = 1.000,
                         BorderSizePixel = 0,
@@ -779,7 +827,7 @@ function HexUI:CreateMain(Options)
                         BackgroundTransparency = 1.000,
                         BorderSizePixel = 0,
                         Size = UDim2.new(1, 0, 1, 0),
-                        Image = "rbxassetid://3570695787",
+                        Image = "rbxassetid://9772649226",
                         ImageColor3 = Color3.fromRGB(20, 20, 20),
                         ScaleType = Enum.ScaleType.Slice,
                         SliceCenter = Rect.new(100, 100, 100, 100),
@@ -798,19 +846,21 @@ function HexUI:CreateMain(Options)
                         TextSize = 19.000,
                         TextXAlignment = Enum.TextXAlignment.Left,
                 	})
-                	Interactables.Amount = HexUI:Create("TextLabel", {
+                	Interactables.Amount = HexUI:Create("TextBox", {
                 	    Name = "Amount",
-                        BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                        BackgroundColor3 = Color3.fromRGB(15, 15, 15),
                         BackgroundTransparency = 1.000,
-                        BorderSizePixel = 0,
-                        Position = UDim2.new(0.819999993, 0, 0.100000001, 0),
-                        Size = UDim2.new(0.150000006, 0, 0.449999988, 0),
+                        Position = UDim2.new(0.790000021, 0, 0.100000001, 0),
+                        Size = UDim2.new(0.189999998, 0, 0.449999988, 0),
                         Font = Enum.Font.Gotham,
-                        Text = Min,
+                        PlaceholderColor3 = Color3.fromRGB(100, 100, 100),
+                        PlaceholderText = "",
+                        Text = "",
                         TextColor3 = Color3.fromRGB(255, 255, 255),
-                        TextSize = 17.000,
+                        TextSize = 16.000,
                         TextXAlignment = Enum.TextXAlignment.Right,
                 	})
+                	Interactables.AmountCorner = HexUI:Create("UICorner", {})
                 	Interactables.SliderOuter = HexUI:Create("ImageButton", {
                 	    Name = "SliderOuter",
                         BackgroundColor3 = Color3.fromRGB(255, 255, 255),
@@ -819,7 +869,7 @@ function HexUI:CreateMain(Options)
                         Position = UDim2.new(0.0260000005, 0, 0, 32),
                         Size = UDim2.new(0.953999996, 0, 0, 10),
                         AutoButtonColor = false,
-                        Image = "rbxassetid://3570695787",
+                        Image = "rbxassetid://9772649226",
                         ImageColor3 = Color3.fromRGB(15, 15, 15),
                         ScaleType = Enum.ScaleType.Slice,
                         SliceCenter = Rect.new(100, 100, 100, 100),
@@ -831,11 +881,33 @@ function HexUI:CreateMain(Options)
                         BackgroundTransparency = 1.000,
                         Position = UDim2.new(0, 0, 0, 1),
                         Size = UDim2.new(0, 0, 0, 8),
-                        Image = "rbxassetid://3570695787",
+                        Image = "rbxassetid://9772649226",
                         ScaleType = Enum.ScaleType.Slice,
                         SliceCenter = Rect.new(100, 100, 100, 100),
                         SliceScale = 0.030,
                 	})
+                	Interactables.Percent = HexUI:Create("TextLabel", {
+                	    Name = "Percent",
+                        BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                        BackgroundTransparency = 1.000,
+                        BorderSizePixel = 0,
+                        Position = UDim2.new(0.400000006, 0, 0.670000017, 0),
+                        Size = UDim2.new(0.200000003, 0, 0.200000003, 0),
+                        Font = Enum.Font.Gotham,
+                        Text = "0%",
+                        TextColor3 = Color3.fromRGB(255, 255, 255),
+                        TextSize = 14.000,
+                        TextStrokeTransparency = 0.000,
+                        Visible = false,
+                	})
+                	
+                	if Options.percentage then
+                        Interactables.Percent.Visible = true
+                    end
+                	
+                	local function updatepercent()
+                	    Interactables.Percent.Text = tostring(math.round((math.round(Interactables.SliderInner.AbsoluteSize.X) / math.round(Interactables.SliderOuter.AbsoluteSize.X)) * 100)).."%"
+                	end
                 	
                 	if Options.default then 
 						Interactables.Amount.Text = tostring(Options.default)
@@ -846,7 +918,11 @@ function HexUI:CreateMain(Options)
 						TS:Create(Interactables.SliderInner, TweenInfo.new(0.05), {
 							Size = UDim2.new(s, 0, 0, 8)
 						}):Play()
-					end
+						spawn(function()
+						    wait()
+						    updatepercent()
+						end)
+                	end
 
 					Interactables.SliderOuter.MouseButton1Down:Connect(function()
 
@@ -858,6 +934,7 @@ function HexUI:CreateMain(Options)
 								Value = math.floor(Min + ((Max - Min) * s))
 							end
 							Interactables.Amount.Text = tostring(Value)
+							LastNumber = Value
 
 							if Callback then
 								Callback(Value)
@@ -866,6 +943,7 @@ function HexUI:CreateMain(Options)
 							TS:Create(Interactables.SliderInner, TweenInfo.new(0.05), {
 								Size = UDim2.new(s, 0, 0, 8)
 							}):Play()
+							updatepercent()
 						end)
 
 						UIS.InputEnded:Connect(function(Check)
@@ -878,14 +956,94 @@ function HexUI:CreateMain(Options)
 						end)
 					end)
 					
+					-- Keep cursor at the end
+					local CursorPoint
+					Interactables.Amount.Focused:Connect(function()
+					    CursorPoint = RS.Heartbeat:Connect(function()
+					        Interactables.Amount.CursorPosition = #Interactables.Amount.Text + 1
+				        end)
+					end)
+			        Interactables.Amount.FocusLost:Connect(function()
+					    if CursorPoint then
+					        CursorPoint:Disconnect()
+					        CursorPoint = nil
+				        end
+					end)
+					
+					-- Manage the Amount TextBox
+					local allowed
+					
+					if Min < 0 then
+    					allowed = {
+                			[""] = true,
+                			["-"] = true
+                		}
+					elseif Min >= 0 then
+            	        allowed = {
+                			[""] = true
+                		}
+					end
+            	
+            	    local function IsADecimal(number)
+                    	if tostring(number):split(".")[1] == tostring(number) then
+                    		return false
+                    	else
+                    		return true
+                    	end
+                    end
+					
+					Interactables.Amount:GetPropertyChangedSignal("Text"):Connect(function()
+            			local text = Interactables.Amount.Text
+            			
+            			if not allowed[text] and not tonumber(text) then
+            				Interactables.Amount.Text = text:sub(1, #text - 1)
+            			elseif not allowed[text] then
+            				if tonumber(text) > Max then
+            				    Interactables.Amount.Text = Max
+            				elseif tonumber(text) < Min then
+            				    Interactables.Amount.Text = Min
+            				end
+            				
+            				if not Options.precise and IsADecimal(tonumber(Interactables.Amount.Text)) then
+            				    Interactables.Amount.Text = text:sub(1, #text - 1)
+            				end
+            				
+            				if #Interactables.Amount.Text > #tostring(Min) + 2 then
+            				    Interactables.Amount.Text = text:sub(1, #text - 1)
+            				end
+            				
+            				LastNumber = tonumber(Interactables.Amount.Text)
+            				if Callback then
+								Callback(tonumber(Interactables.Amount.Text))
+            				end
+						    
+            				local s = (tonumber(Interactables.Amount.Text) - Min) / (Max - Min)
+            				TS:Create(Interactables.SliderInner, TweenInfo.new(0.05), {
+							    Size = UDim2.new(s, 0, 0, 8)
+    						}):Play()
+    						spawn(function()
+    						    wait()
+    						    updatepercent()
+    						end)
+            			end
+					end)
+        		    
+                    Interactables.Amount.FocusLost:Connect(function()
+                        if Interactables.Amount.Text == "" then
+                            Interactables.Amount.Text = LastNumber
+                        end
+                    end)
+					
 					Category.Container.CanvasSize = Category.Container.CanvasSize + UDim2.new(0,0,0,57)
                 	
                 	Interactables.Slider.Parent = Category.Container
                 	Interactables.Base.Parent = Interactables.Slider
                 	Interactables.SliderText.Parent = Interactables.Base
                 	Interactables.Amount.Parent = Interactables.Base
+                	Interactables.AmountCorner.Parent = Interactables.Amount
                 	Interactables.SliderOuter.Parent = Interactables.Base
                 	Interactables.SliderInner.Parent = Interactables.SliderOuter
+                	Interactables.Percent.Parent = Interactables.Base
                 elseif Type:lower() == "dropdown" then
                     if Options and not Options.search then
 
@@ -938,14 +1096,14 @@ function HexUI:CreateMain(Options)
 						end
 
 						Interactables.dropdownb = HexUI:Create("ImageLabel", {
-							Name = "Dropdown",
+							Name = Name,
 							BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 							BackgroundTransparency = 1.000,
 							BorderColor3 = Color3.fromRGB(27, 42, 53),
 							Position = UDim2.new(0, 11, 0, 40),
 							Size = UDim2.new(0.982, 0, 0, 30),
 							ImageTransparency = 1,
-							Image = "rbxassetid://3570695787",
+							Image = "rbxassetid://9772649226",
 							ImageColor3 = Color3.fromRGB(20,20,20),
 							ScaleType = Enum.ScaleType.Slice,
 							SliceCenter = Rect.new(100, 100, 100, 100),
@@ -962,7 +1120,7 @@ function HexUI:CreateMain(Options)
 							Position = UDim2.new(0.04, 0, 0, 0),
 							Size = UDim2.new(0.915, 0, 0, 30),
 							AutoButtonColor = false,
-							Image = "rbxassetid://3570695787",
+							Image = "rbxassetid://9772649226",
 							ImageColor3 = Color3.fromRGB(20,20,20),
 							ScaleType = Enum.ScaleType.Slice,
 							SliceCenter = Rect.new(100, 100, 100, 100),
@@ -1008,7 +1166,7 @@ function HexUI:CreateMain(Options)
 							Selectable = true,
 							Size = UDim2.new(1, 0, 0, 120),
 							ZIndex = 2,
-							Image = "rbxassetid://3570695787",
+							Image = "rbxassetid://9772649226",
 							ImageColor3 = Color3.fromRGB(15,15,15),
 							ScaleType = Enum.ScaleType.Slice,
 							SliceCenter = Rect.new(100, 100, 100, 100),
@@ -1074,7 +1232,7 @@ function HexUI:CreateMain(Options)
 									Size = UDim2.new(0.98, 0, 0, 30),
 									ZIndex = 2,
 									AutoButtonColor = false,
-									Image = "rbxassetid://3570695787",
+									Image = "rbxassetid://9772649226",
 									ImageColor3 = Color3.fromRGB(20,20,20),
 									ScaleType = Enum.ScaleType.Slice,
 									SliceCenter = Rect.new(100, 100, 100, 100),
@@ -1279,14 +1437,14 @@ function HexUI:CreateMain(Options)
 						end
 
 						Interactables.dropdownb = HexUI:Create("ImageLabel", {
-							Name = "Dropdown",
+							Name = Name,
 							BackgroundColor3 = Color3.fromRGB(255, 255, 255),
 							BackgroundTransparency = 1.000,
 							BorderColor3 = Color3.fromRGB(27, 42, 53),
 							Position = UDim2.new(0, 11, 0, 40),
 							Size = UDim2.new(0.982, 0, 0, 30),
 							ImageTransparency = 1,
-							Image = "rbxassetid://3570695787",
+							Image = "rbxassetid://9772649226",
 							ImageColor3 = Color3.fromRGB(20,20,20),
 							ScaleType = Enum.ScaleType.Slice,
 							SliceCenter = Rect.new(100, 100, 100, 100),
@@ -1303,7 +1461,7 @@ function HexUI:CreateMain(Options)
 							Position = UDim2.new(0.04, 0, 0, 0),
 							Size = UDim2.new(0.915, 0, 0, 30),
 							AutoButtonColor = false,
-							Image = "rbxassetid://3570695787",
+							Image = "rbxassetid://9772649226",
 							ImageColor3 = Color3.fromRGB(20,20,20),
 							ScaleType = Enum.ScaleType.Slice,
 							SliceCenter = Rect.new(100, 100, 100, 100),
@@ -1333,7 +1491,7 @@ function HexUI:CreateMain(Options)
 							Position = UDim2.new(0.03, 0, 0, 0),
 							Size = UDim2.new(0.8, 0, 1, 0),
 							ImageTransparency = 1,
-							Image = "rbxassetid://3570695787",
+							Image = "rbxassetid://9772649226",
 							ImageColor3 = Color3.fromRGB(15,15,15),
 							ScaleType = Enum.ScaleType.Slice,
 							SliceCenter = Rect.new(100, 100, 100, 100),
@@ -1384,7 +1542,7 @@ function HexUI:CreateMain(Options)
 							Selectable = true,
 							Size = UDim2.new(1, 0, 0, 120),
 							ZIndex = 2,
-							Image = "rbxassetid://3570695787",
+							Image = "rbxassetid://9772649226",
 							ImageColor3 = Color3.fromRGB(15,15,15),
 							ScaleType = Enum.ScaleType.Slice,
 							SliceCenter = Rect.new(100, 100, 100, 100),
@@ -1453,7 +1611,7 @@ function HexUI:CreateMain(Options)
 									Size = UDim2.new(0.98, 0, 0, 30),
 									ZIndex = 2,
 									AutoButtonColor = false,
-									Image = "rbxassetid://3570695787",
+									Image = "rbxassetid://9772649226",
 									ImageColor3 = Color3.fromRGB(20,20,20),
 									ScaleType = Enum.ScaleType.Slice,
 									SliceCenter = Rect.new(100, 100, 100, 100),
@@ -1560,39 +1718,19 @@ function HexUI:CreateMain(Options)
 										table.insert(tablelist, f)
 									end
 									local list = game:GetService("Players"):GetChildren()
-									if not Options.plotlist then
-										for i, v in pairs(list) do
-											if v:IsA("Player") then
-												table.insert(tablelist, v.Name)
-											end
-										end
-									else
-										for i, v in pairs(list) do
-											if v:IsA("Player") then
-												table.insert(tablelist, v.Name)
-
-												table.insert(tablelist, v.Name.."'s Plot")
-											end
+									for i, v in pairs(list) do
+										if v:IsA("Player") then
+											table.insert(tablelist, v.Name)
 										end
 									end
 								elseif not Options.options and Options.playerlist then
 									tablelist = {}
 									local list = game:GetService("Players"):GetChildren()
-									if not Options.plotlist then 
-										for i, v in pairs(list) do
-											if v:IsA("Player") then
-												table.insert(tablelist, v.Name)
-											end
-										end     
-									else       
-										for i, v in pairs(list) do
-											if v:IsA("Player") then
-												table.insert(tablelist, v.Name)
-
-												table.insert(tablelist, v.Name.."'s Plot")
-											end
-										end										
-									end                        
+									for i, v in pairs(list) do
+										if v:IsA("Player") then
+											table.insert(tablelist, v.Name)
+										end
+									end                     
 								end
 							end
 
@@ -1741,9 +1879,14 @@ function HexUI:CreateMain(Options)
                 elseif Type:lower() == "colorpicker" then
 			        local colorpickeropen = false
 					local colorpickervalue
+					local lastcolor = Options.default or Color3.fromRGB(255,255,255)
+					
+					local h,s,v = 0,0,1
+					local color = Color3.fromRGB(255,255,255)
+					local r,g,b = 255,255,255
 					
 					Interactables.ColorpickerObject = HexUI:Create("Frame", {
-						Name = "Colorpicker",
+						Name = Name,
                         BackgroundColor3 = Color3.fromRGB(15, 15, 15),
                         BackgroundTransparency = 1.000,
                         BorderSizePixel = 0,
@@ -1756,7 +1899,7 @@ function HexUI:CreateMain(Options)
                         BackgroundTransparency = 1.000,
                         BorderSizePixel = 0,
                         Size = UDim2.new(1, 0, 1, 0),
-                        Image = "rbxassetid://3570695787",
+                        Image = "rbxassetid://9772649226",
                         ImageColor3 = Color3.fromRGB(20, 20, 20),
                         ScaleType = Enum.ScaleType.Slice,
                         SliceCenter = Rect.new(100, 100, 100, 100),
@@ -1783,7 +1926,7 @@ function HexUI:CreateMain(Options)
                         Size = UDim2.new(0.0546096712, 51, 0.75, 0),
                         AutoButtonColor = false,
                         Selected = true,
-                        Image = "rbxassetid://3570695787",
+                        Image = "rbxassetid://9772649226",
                         ScaleType = Enum.ScaleType.Slice,
                         SliceCenter = Rect.new(100, 100, 100, 100),
                         SliceScale = 0.040,
@@ -1798,7 +1941,7 @@ function HexUI:CreateMain(Options)
                         ClipsDescendants = true,
                         Position = UDim2.new(1.02636921, 0, 0.106666684, 0),
                         Selectable = true,
-                        Size = UDim2.new(0, 0, 0, 203),
+                        Size = UDim2.new(0, 0, 0, 223),
 					})
 					Interactables.ColorpickerE = HexUI:Create("Frame", {
 						Name = "Colorpicker",
@@ -1807,7 +1950,7 @@ function HexUI:CreateMain(Options)
                         ClipsDescendants = false,
                         Position = UDim2.new(0, 0, 0, 0),
                         Selectable = true,
-                        Size = UDim2.new(0, 172, 0, 203),
+                        Size = UDim2.new(0, 172, 0, 223),
 					})
 					Interactables.UICorner1 = HexUI:Create("UICorner", {})
 					Interactables.ColorpickerShadow = HexUI:Create("ImageLabel", {
@@ -1815,19 +1958,19 @@ function HexUI:CreateMain(Options)
                         BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                         BackgroundTransparency = 1.000,
                         Position = UDim2.new(-0.041, 0, -0.044, 0),
-                        Size = UDim2.new(0, 187, 0, 223),
+                        Size = UDim2.new(0, 187, 0, 243),
                         ZIndex = -10,
-                        Image = "rbxassetid://7666162633",
+                        Image = "rbxassetid://9772641843",
                         ImageColor3 = Color3.fromRGB(0, 0, 0),
 					})
 					Interactables.DarknessPicker = HexUI:Create("ImageButton", {
 						Name = "DarknessPicker",
                         BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                         BorderSizePixel = 0,
-                        Position = UDim2.new(0.0850000009, 0, 0.0439999998, 0),
+                        Position = UDim2.new(0.0850000009, 0, 0.129999995, 0),
                         Size = UDim2.new(0, 122, 0, 122),
                         AutoButtonColor = false,
-                        Image = "rbxassetid://5113592272",
+                        Image = "rbxassetid://9772651316",
                         ImageColor3 = Color3.fromRGB(255, 0, 0),
                         SliceCenter = Rect.new(2, 2, 298, 298),
 					})
@@ -1836,7 +1979,7 @@ function HexUI:CreateMain(Options)
                         BackgroundTransparency = 1.000,
                         BorderSizePixel = 0,
                         Size = UDim2.new(1, 0, 1, 0),
-                        Image = "rbxassetid://5113600420",
+                        Image = "rbxassetid://9772652951",
 					})
 					Interactables.DarknessRing = HexUI:Create("ImageLabel", {
 						Name = "DarknessRing",
@@ -1846,7 +1989,7 @@ function HexUI:CreateMain(Options)
                         Size = UDim2.new(0, 10, 0, 10),
                         SizeConstraint = Enum.SizeConstraint.RelativeYY,
                         ZIndex = 5,
-                        Image = "rbxassetid://5674514673",
+                        Image = "rbxassetid://9772656467",
 					})
 					Interactables.Done = HexUI:Create("TextButton", {
 						Name = "Done",
@@ -1865,7 +2008,7 @@ function HexUI:CreateMain(Options)
 						Name = "G",
                         BackgroundColor3 = Color3.fromRGB(25, 25, 25),
                         BorderSizePixel = 0,
-                        Position = UDim2.new(0.442000002, 0, 0.689999998, 0),
+                        Position = UDim2.new(0.442000002, 0, 0.709999979, 0),
                         Size = UDim2.new(0, 31, 0, 25),
                         Font = Enum.Font.Gotham,
                         Text = "255",
@@ -1888,7 +2031,7 @@ function HexUI:CreateMain(Options)
 						Name = "R",
                         BackgroundColor3 = Color3.fromRGB(25, 25, 25),
                         BorderSizePixel = 0,
-                        Position = UDim2.new(0.149000004, 0, 0.689999998, 0),
+                        Position = UDim2.new(0.149000004, 0, 0.709999979, 0),
                         Size = UDim2.new(0, 30, 0, 25),
                         Font = Enum.Font.Gotham,
                         Text = "255",
@@ -1911,7 +2054,7 @@ function HexUI:CreateMain(Options)
 						Name = "B",
                         BackgroundColor3 = Color3.fromRGB(25, 25, 25),
                         BorderSizePixel = 0,
-                        Position = UDim2.new(0.74000001, 0, 0.689999998, 0),
+                        Position = UDim2.new(0.74000001, 0, 0.709999979, 0),
                         Size = UDim2.new(0, 30, 0, 25),
                         Font = Enum.Font.Gotham,
                         Text = "255",
@@ -1935,9 +2078,9 @@ function HexUI:CreateMain(Options)
                         BackgroundColor3 = Color3.fromRGB(255, 255, 255),
                         BackgroundTransparency = 1.000,
                         BorderSizePixel = 0,
-                        Position = UDim2.new(0.866279066, 0, 0.0443349741, 0),
+                        Position = UDim2.new(0.866279066, 0, 0.129999995, 0),
                         Size = UDim2.new(0, 6, 0, 122),
-                        Image = "rbxassetid://7666159158",
+                        Image = "rbxassetid://9772659779",
 					})
 					Interactables.HueRing = HexUI:Create("ImageLabel", {
 						Name = "HueRing",
@@ -1945,7 +2088,31 @@ function HexUI:CreateMain(Options)
                         BackgroundTransparency = 1.000,
                         Position = UDim2.new(0, -1, 0, -6),
                         Size = UDim2.new(0, 8, 0, 8),
-                        Image = "rbxassetid://3570695787",
+                        Image = "rbxassetid://9772649226",
+					})
+					Interactables.ColorpickerTitle = HexUI:Create("TextLabel", {
+						Name = "Title",
+                        BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                        BackgroundTransparency = 1.000,
+                        Position = UDim2.new(0.0299999993, 0, 0, 0),
+                        Size = UDim2.new(0.850000024, 0, 0.100000001, 0),
+                        Font = Enum.Font.Gotham,
+                        Text = Name,
+                        TextColor3 = Color3.fromRGB(255, 255, 255),
+                        TextSize = 14.000,
+                        TextTruncate = Enum.TextTruncate.AtEnd,
+					})
+					Interactables.Cancel = HexUI:Create("TextButton", {
+						Name = "Cancel",
+						AutoButtonColor = false,
+                        BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+                        BackgroundTransparency = 1.000,
+                        Position = UDim2.new(0.899999976, 0, 0, 0),
+                        Size = UDim2.new(0.100000001, 0, 0.100000001, 0),
+                        Font = Enum.Font.Gotham,
+                        Text = "X",
+                        TextColor3 = Color3.fromRGB(255, 255, 255),
+                        TextSize = 14.000,
 					})
 					
 					Category.Container.CanvasSize = Category.Container.CanvasSize + UDim2.new(0,0,0,41)
@@ -1955,11 +2122,13 @@ function HexUI:CreateMain(Options)
                         
                         for i,v in pairs(Main.Motherframe:GetChildren()) do
 				            if v.Name == "Colorpicker" then
-						        game:GetService("TweenService"):Create(v, TweenInfo.new(0.2), {Size = UDim2.new(0, 0, 0, 203)}):Play()
+						        game:GetService("TweenService"):Create(v, TweenInfo.new(0.2), {Size = UDim2.new(0, 0, 0, 223)}):Play()
 					        end
 			            end
 						if colorpickeropen then
-						    game:GetService("TweenService"):Create(Interactables.Colorpicker, TweenInfo.new(0.2), {Size = UDim2.new(0, 172, 0, 203)}):Play()
+						    game:GetService("TweenService"):Create(Interactables.Colorpicker, TweenInfo.new(0.2), {Size = UDim2.new(0, 172, 0, 223)}):Play()
+						elseif not colorpickeropen then
+	                        lastcolor = color
 						end
 					end)
 
@@ -1967,14 +2136,11 @@ function HexUI:CreateMain(Options)
 						colorpickeropen = not colorpickeropen
 						for i,v in pairs(Main.Motherframe:GetChildren()) do
 						    if v.Name == "Colorpicker" then
-						        game:GetService("TweenService"):Create(v, TweenInfo.new(0.2), {Size = UDim2.new(0, 0, 0, 203)}):Play()
+						        game:GetService("TweenService"):Create(v, TweenInfo.new(0.2), {Size = UDim2.new(0, 0, 0, 223)}):Play()
 						    end
-			            end
+						end
+		                lastcolor = color
 					end)
-
-					local h,s,v = 0,0,1
-					local color = Color3.fromRGB(255,255,255)
-					local r,g,b = 255,255,255
 
 					local hueconnection
 					local darknessconnection
@@ -2032,7 +2198,7 @@ function HexUI:CreateMain(Options)
 								Interactables.R.Text = "255"
 							elseif tonumber(Text) and tonumber(Text) <= 255 then 
 								r = Text
-								local color = Color3.fromRGB(r,g,b)
+								color = Color3.fromRGB(r,g,b)
 								h,s,v = Color3.toHSV(color)
 								Update()
 							end
@@ -2049,7 +2215,7 @@ function HexUI:CreateMain(Options)
 								Interactables.G.Text = "255"
 							elseif tonumber(Text) and tonumber(Text) <= 255 then 
 								g = Text
-								local color = Color3.fromRGB(r,g,b)
+								color = Color3.fromRGB(r,g,b)
 								h,s,v = Color3.toHSV(color)
 								Update()
 							end
@@ -2066,7 +2232,7 @@ function HexUI:CreateMain(Options)
 								Interactables.B.Text = "255"
 							elseif tonumber(Text) and tonumber(Text) <= 255 then 
 								b = Text
-								local color = Color3.fromRGB(r,g,b)
+								color = Color3.fromRGB(r,g,b)
 								h,s,v = Color3.toHSV(color)
 								Update()
 							end
@@ -2079,13 +2245,33 @@ function HexUI:CreateMain(Options)
 							h,s,v = Color3.toHSV(Options.default)
 							Update()
 						end 
-					end 
+					end
 					
 					function Interactables:SetColor(Color)
 						r,g,b = Color.r * 255, Color.g * 255, Color.b * 255
 						h,s,v = Color3.toHSV(Color)
 						Update()
 					end
+					
+					local function UpdateColorpicker(Color)
+						r,g,b = Color.r * 255, Color.g * 255, Color.b * 255
+						h,s,v = Color3.toHSV(Color)
+						Update()
+					end
+					
+					Interactables.Cancel.MouseButton1Click:Connect(function()
+						colorpickeropen = not colorpickeropen
+                        
+                        for i,v in pairs(Main.Motherframe:GetChildren()) do
+				            if v.Name == "Colorpicker" then
+						        game:GetService("TweenService"):Create(v, TweenInfo.new(0.2), {Size = UDim2.new(0, 0, 0, 223)}):Play()
+					        end
+			            end
+						if colorpickeropen then
+						    game:GetService("TweenService"):Create(Interactables.Colorpicker, TweenInfo.new(0.2), {Size = UDim2.new(0, 172, 0, 223)}):Play()
+						end
+						UpdateColorpicker(lastcolor)
+					end)
 					
 					UIS.InputEnded:Connect(function(Mouse)
 						if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -2099,6 +2285,37 @@ function HexUI:CreateMain(Options)
 							end
 						end
 					end)
+					
+					local dragInputColor
+                	local dragStartColor
+                	local startPosColor
+                	local draggingColor
+                	local function updateColor(input)
+                		local delta = input.Position - dragStartColor
+                		Main.Motherframe:TweenPosition(UDim2.new(startPosColor.X.Scale, startPosColor.X.Offset + delta.X, startPosColor.Y.Scale, startPosColor.Y.Offset + delta.Y), 'Out', 'Linear', 0.01, true)
+                	end
+                	Interactables.Colorpicker.InputBegan:Connect(function(input)
+                		if input.UserInputType == Enum.UserInputType.MouseButton1 and IsOpen and colorpickeropen then
+                			draggingColor = true
+                			dragStartColor = input.Position
+                			startPosColor = Main.Motherframe.Position
+                			repeat
+                				wait()
+                			until input.UserInputState == Enum.UserInputState.End
+                			draggingColor = false
+                			OldPos = Main.Motherframe.Position
+                		end
+                	end)
+                	Interactables.Colorpicker.InputChanged:Connect(function(input)
+                		if input.UserInputType == Enum.UserInputType.MouseMovement then
+                			dragInputColor = input
+                		end
+                	end)
+                	game:GetService("UserInputService").InputChanged:Connect(function(input)
+                		if input == dragInputColor and draggingColor and IsOpen then
+                			updateColor(input)
+                		end
+                	end)
 					
 					-- Set Colorpicker Object Parents
     				Interactables.ColorpickerObject.Parent = Category.Container
@@ -2126,6 +2343,8 @@ function HexUI:CreateMain(Options)
     				Interactables.BText.Parent = Interactables.B
     				Interactables.HuePicker.Parent = Interactables.ColorpickerE
     				Interactables.HueRing.Parent = Interactables.HuePicker
+    				Interactables.ColorpickerTitle.Parent = Interactables.ColorpickerE
+    				Interactables.Cancel.Parent = Interactables.ColorpickerE
     				Interactables.Colorpicker.ClipsDescendants = true
 				end
                 
@@ -2135,9 +2354,30 @@ function HexUI:CreateMain(Options)
     		
     		Section.SectionTitle.Parent = Category.Container
     		Section.Line.Parent = Section.SectionTitle
+    		Section.LineGradient.Parent = Section.Line
     		Section.UIListLayout.Parent = Category.Container
     		return Section
-        end
+    	end
+    
+        Main.SearchBar:GetPropertyChangedSignal("Text"):Connect(function()
+    	    if Main.SearchBar.Text ~= "" then
+                for _,v in pairs(Category.Container:GetChildren()) do
+                    if not v:IsA("TextLabel") and v.Name ~= "UIListLayout" then
+                        if string.find(v.Name:lower(), Main.SearchBar.Text:lower()) then
+                            v.Visible = true
+                        else 
+                            v.Visible = false
+                        end
+                    end
+                end
+            else
+                for _,v in pairs(Category.Container:GetChildren()) do
+                    if not v:IsA("TextLabel") and v.Name ~= "UIListLayout" then
+                        v.Visible = true
+                    end
+                end
+            end
+        end)
     	
     	Category.NewCategory.Parent = Main.Sidebar
     	Category.Container.Parent = Main.Interactables
@@ -2158,6 +2398,8 @@ function HexUI:CreateMain(Options)
 	Main.SidebarLineGradient.Parent = Main.SidebarLine
 	Main.Interactables.Parent = Main.Motherframe
 	Main.Interactables.ClipsDescendants = true
+	Main.SearchBar.Parent = Main.Motherframe
+	Main.SearchCorner.Parent = Main.SearchBar
 	return Main
 end
 
