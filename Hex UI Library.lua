@@ -38,14 +38,14 @@ function HexUI:CreateMain(Options)
 	Main.Motherframe = HexUI:Create("Frame", {
     	Name = "Motherframe",
     	AnchorPoint = Vector2.new(0.5,0),
-        BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+        BackgroundColor3 = Color3.fromRGB(0,0,0),
         Position = UDim2.new(0.2, 0, 0.1, 0),
         Size = UDim2.new(0, 493, 0, 450),
     })
     OldPos = Main.Motherframe.Position
     Main.MotherframeE = HexUI:Create("Frame", {
     	Name = "MotherframeE",
-        BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+        BackgroundColor3 = Color3.fromRGB(0,0,0),
         BackgroundTransparency = 1,
         Position = UDim2.new(0, 0, 0, 0),
         Size = UDim2.new(0, 493, 0, 450),
@@ -71,7 +71,7 @@ function HexUI:CreateMain(Options)
     	Font = Enum.Font.Gotham,
     	Text = Options.UIName,
     	TextColor3 = Color3.fromRGB(255, 255, 255),
-    	TextSize = 30.000,
+    	TextSize = 28.000,
     	TextWrapped = true,
     	TextXAlignment = Enum.TextXAlignment.Left,
     })
@@ -92,7 +92,7 @@ function HexUI:CreateMain(Options)
     	Size = UDim2.new(0, 2, 0, 400),
     })
     Main.SidebarLineGradient = HexUI:Create("UIGradient", {
-        Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 75, 255)), ColorSequenceKeypoint.new(0.90, Color3.fromRGB(15, 15, 15)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(15, 15, 15))},
+        Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 75, 255)), ColorSequenceKeypoint.new(0.90, Color3.fromRGB(0,0,0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0,0,0))},
         Rotation = 90,
     })
     Main.Sidebar = HexUI:Create("Frame", {
@@ -119,7 +119,7 @@ function HexUI:CreateMain(Options)
 	})
 	Main.SearchBar = HexUI:Create("TextBox", {
     	Name = "Searchbar",
-        BackgroundColor3 = Color3.fromRGB(20, 20, 20),
+        BackgroundColor3 = Color3.fromRGB(9,9,9),
         BorderSizePixel = 0,
         Position = UDim2.new(0.592898667, 0, 0.0199999996, 0),
         Size = UDim2.new(0, 187, 0, 30),
@@ -233,7 +233,7 @@ function HexUI:CreateMain(Options)
         	Font = Enum.Font.Gotham,
         	Text = Name,
         	TextColor3 = Color3.fromRGB(100, 100, 100),
-        	TextSize = 18.000,
+        	TextSize = 17.000,
         	TextWrapped = true,
         	TextXAlignment = Enum.TextXAlignment.Left,
     	})
@@ -304,7 +304,7 @@ function HexUI:CreateMain(Options)
             
             Section.Section = HexUI:Create("Frame", {
                 Name = Name,
-    			BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+    			BackgroundColor3 = Color3.fromRGB(0,0,0),
     			BorderColor3 = Color3.fromRGB(0, 75, 255),
     			BorderSizePixel = 2,
     			Position = UDim2.new(0.019073572, 0, 0.00670059305, 0),
@@ -318,7 +318,7 @@ function HexUI:CreateMain(Options)
     			Font = Enum.Font.Gotham,
     			Text = Name,
     			TextColor3 = Color3.fromRGB(255, 255, 255),
-    			TextSize = 24.000,
+    			TextSize = 23.000,
     		})
     		Section.Line = HexUI:Create("Frame", {
     		    Name = "Line",
@@ -328,7 +328,7 @@ function HexUI:CreateMain(Options)
             	Size = UDim2.new(0, 312, 0, 2),
             })
             Section.LineGradient = HexUI:Create("UIGradient", {
-                Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(15, 15, 15)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(0, 75, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(15, 15, 15))},
+                Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0,0,0)), ColorSequenceKeypoint.new(0.50, Color3.fromRGB(0, 75, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0,0,0))},
             })
             --[[Section.Objects = HexUI:Create("Frame", {
                 Name = "Objects",
@@ -355,7 +355,7 @@ function HexUI:CreateMain(Options)
                 if Type:lower() == "button" then
                     Interactables.Button = HexUI:Create("Frame", {
                         Name = Name,
-                    	BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+                    	BackgroundColor3 = Color3.fromRGB(0,0,0),
                     	BackgroundTransparency = 1.000,
                     	BorderSizePixel = 0,
                     	Position = UDim2.new(0.0260000005, 0, 0.150000006, 0),
@@ -368,7 +368,7 @@ function HexUI:CreateMain(Options)
             			BackgroundTransparency = 1.000,
             			Size = UDim2.new(1, 0, 1, 0),
             			Image = "rbxassetid://9772649226",
-            			ImageColor3 = Color3.fromRGB(20, 20, 20),
+            			ImageColor3 = Color3.fromRGB(9,9,9),
             			Position = UDim2.new(0.5, 0, 0, 0),
             			ScaleType = Enum.ScaleType.Slice,
             			SliceCenter = Rect.new(100, 100, 100, 100),
@@ -421,7 +421,7 @@ function HexUI:CreateMain(Options)
                     
                     Interactables.Toggle = HexUI:Create("Frame", {
                         Name = Name,
-                    	BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+                    	BackgroundColor3 = Color3.fromRGB(0,0,0),
                     	BackgroundTransparency = 1.000,
                     	BorderSizePixel = 0,
                     	Position = UDim2.new(0.0260000005, 0, 0.289999992, 0),
@@ -434,7 +434,7 @@ function HexUI:CreateMain(Options)
                     	BorderSizePixel = 0,
                     	Size = UDim2.new(1, 0, 1, 0),
                     	Image = "rbxassetid://9772649226",
-                    	ImageColor3 = Color3.fromRGB(20, 20, 20),
+                    	ImageColor3 = Color3.fromRGB(9,9,9),
                     	ScaleType = Enum.ScaleType.Slice,
                     	SliceCenter = Rect.new(100, 100, 100, 100),
                     	SliceScale = 0.040,
@@ -459,7 +459,7 @@ function HexUI:CreateMain(Options)
                     	Position = UDim2.new(0.829999983, 0, 0.140000001, 0),
                     	Size = UDim2.new(0, 51, 0.699999988, 0),
                     	Image = "rbxassetid://9772649226",
-                    	ImageColor3 = Color3.fromRGB(15, 15, 15),
+                    	ImageColor3 = Color3.fromRGB(0,0,0),
                     	ScaleType = Enum.ScaleType.Slice,
                     	SliceCenter = Rect.new(100, 100, 100, 100),
                     	SliceScale = 0.040,
@@ -536,7 +536,7 @@ function HexUI:CreateMain(Options)
                     
                     Interactables.Textbox = HexUI:Create("Frame", {
                         Name = Name,
-            			BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+            			BackgroundColor3 = Color3.fromRGB(0,0,0),
             			BackgroundTransparency = 1.000,
             			BorderSizePixel = 0,
             			Position = UDim2.new(0.0260000005, 0, 0.430000007, 0),
@@ -549,7 +549,7 @@ function HexUI:CreateMain(Options)
             			BorderSizePixel = 0,
             			Size = UDim2.new(1, 0, 1, 0),
             			Image = "rbxassetid://9772649226",
-            			ImageColor3 = Color3.fromRGB(20, 20, 20),
+            			ImageColor3 = Color3.fromRGB(9,9,9),
             			ScaleType = Enum.ScaleType.Slice,
             			SliceCenter = Rect.new(100, 100, 100, 100),
             			SliceScale = 0.040,
@@ -570,15 +570,15 @@ function HexUI:CreateMain(Options)
                     Interactables.Input = HexUI:Create("TextBox", {
                         Name = "Input",
                         AnchorPoint = Vector2.new(1,0),
-            			BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+            			BackgroundColor3 = Color3.fromRGB(0,0,0),
             			Position = UDim2.new(0.99, 0, 0.128000259, 0),
             			Size = UDim2.new(0.325731754, 11, 0.75, 0),
             			Font = Enum.Font.Gotham,
             			PlaceholderText = Options.placeholder,
-            			Text = "",
+            			Text = Options.text,
             			TextColor3 = Color3.fromRGB(255, 255, 255),
             			TextTruncate = Enum.TextTruncate.AtEnd,
-            			TextSize = 15.000,
+            			TextSize = 14.000,
             			TextXAlignment = Enum.TextXAlignment.Right,
                     })
                     Interactables.UICorner = HexUI:Create("UICorner", {})
@@ -632,7 +632,7 @@ function HexUI:CreateMain(Options)
                 elseif Type:lower() == "textlabel" then
                     Interactables.TextLabel = HexUI:Create("Frame", {
                         Name = Name,
-                    	BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+                    	BackgroundColor3 = Color3.fromRGB(0,0,0),
                     	BackgroundTransparency = 1.000,
                     	BorderSizePixel = 0,
                     	Position = UDim2.new(0.0260000005, 0, 0.569999993, 0),
@@ -645,7 +645,7 @@ function HexUI:CreateMain(Options)
                     	BorderSizePixel = 0,
                     	Size = UDim2.new(1, 0, 1, 0),
                     	Image = "rbxassetid://9772649226",
-                    	ImageColor3 = Color3.fromRGB(20, 20, 20),
+                    	ImageColor3 = Color3.fromRGB(9,9,9),
                     	ScaleType = Enum.ScaleType.Slice,
                     	SliceCenter = Rect.new(100, 100, 100, 100),
                     	SliceScale = 0.040,
@@ -682,7 +682,7 @@ function HexUI:CreateMain(Options)
                 elseif Type:lower() == "keybind" then
                     Interactables.Keybind = HexUI:Create("Frame", {
                         Name = Name,
-                        BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+                        BackgroundColor3 = Color3.fromRGB(0,0,0),
                         BackgroundTransparency = 1.000,
                         BorderSizePixel = 0,
                         Position = UDim2.new(0.0260000005, 0, 0.430000007, 0),
@@ -695,7 +695,7 @@ function HexUI:CreateMain(Options)
                         BorderSizePixel = 0,
                         Size = UDim2.new(1, 0, 1, 0),
                         Image = "rbxassetid://9772649226",
-                        ImageColor3 = Color3.fromRGB(20, 20, 20),
+                        ImageColor3 = Color3.fromRGB(9,9,9),
                         ScaleType = Enum.ScaleType.Slice,
                         SliceCenter = Rect.new(100, 100, 100, 100),
                         SliceScale = 0.040,
@@ -722,7 +722,7 @@ function HexUI:CreateMain(Options)
                         AutoButtonColor = false,
                         Selected = true,
                         Image = "rbxassetid://9772649226",
-                        ImageColor3 = Color3.fromRGB(15, 15, 15),
+                        ImageColor3 = Color3.fromRGB(0,0,0),
                         ScaleType = Enum.ScaleType.Slice,
                         SliceCenter = Rect.new(100, 100, 100, 100),
                         SliceScale = 0.040,
@@ -809,13 +809,22 @@ function HexUI:CreateMain(Options)
                 elseif Type:lower() == "slider" then
                     local Min = Options.min or 1
 					local Max = Options.max or 0
+					local Default = Options.default or Min
 					local MoveConnection
 					local Value = 0
 					local LastNumber = Options.default or Min
 					
+					if Default then
+					    if Default < Min then
+					        Default = Min
+					    elseif Default > Max then
+					        Default = Max
+					    end
+			        end
+					
 					Interactables.Slider = HexUI:Create("Frame", {
                 	    Name = Name,
-                        BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+                        BackgroundColor3 = Color3.fromRGB(0,0,0),
                         BackgroundTransparency = 1.000,
                         BorderSizePixel = 0,
                         Position = UDim2.new(0.0260000005, 0, 0.430000007, 0),
@@ -828,7 +837,7 @@ function HexUI:CreateMain(Options)
                         BorderSizePixel = 0,
                         Size = UDim2.new(1, 0, 1, 0),
                         Image = "rbxassetid://9772649226",
-                        ImageColor3 = Color3.fromRGB(20, 20, 20),
+                        ImageColor3 = Color3.fromRGB(9,9,9),
                         ScaleType = Enum.ScaleType.Slice,
                         SliceCenter = Rect.new(100, 100, 100, 100),
                         SliceScale = 0.040,
@@ -848,7 +857,7 @@ function HexUI:CreateMain(Options)
                 	})
                 	Interactables.Amount = HexUI:Create("TextBox", {
                 	    Name = "Amount",
-                        BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+                        BackgroundColor3 = Color3.fromRGB(0,0,0),
                         BackgroundTransparency = 1.000,
                         Position = UDim2.new(0.790000021, 0, 0.100000001, 0),
                         Size = UDim2.new(0.189999998, 0, 0.449999988, 0),
@@ -870,7 +879,7 @@ function HexUI:CreateMain(Options)
                         Size = UDim2.new(0.953999996, 0, 0, 10),
                         AutoButtonColor = false,
                         Image = "rbxassetid://9772649226",
-                        ImageColor3 = Color3.fromRGB(15, 15, 15),
+                        ImageColor3 = Color3.fromRGB(0,0,0),
                         ScaleType = Enum.ScaleType.Slice,
                         SliceCenter = Rect.new(100, 100, 100, 100),
                         SliceScale = 0.030,
@@ -909,12 +918,12 @@ function HexUI:CreateMain(Options)
                 	    Interactables.Percent.Text = tostring(math.round((math.round(Interactables.SliderInner.AbsoluteSize.X) / math.round(Interactables.SliderOuter.AbsoluteSize.X)) * 100)).."%"
                 	end
                 	
-                	if Options.default then 
-						Interactables.Amount.Text = tostring(Options.default)
+                	if Default then 
+						Interactables.Amount.Text = tostring(Default)
 						if Callback then
-							Callback(Options.default)
+							Callback(Default)
 						end
-						local s = (Options.default - Min) / (Max - Min)
+						local s = (Default - Min) / (Max - Min)
 						TS:Create(Interactables.SliderInner, TweenInfo.new(0.05), {
 							Size = UDim2.new(s, 0, 0, 8)
 						}):Play()
@@ -957,7 +966,7 @@ function HexUI:CreateMain(Options)
 					end)
 					
 					-- Keep cursor at the end
-					local CursorPoint
+					--[[local CursorPoint
 					Interactables.Amount.Focused:Connect(function()
 					    CursorPoint = RS.Heartbeat:Connect(function()
 					        Interactables.Amount.CursorPosition = #Interactables.Amount.Text + 1
@@ -968,7 +977,7 @@ function HexUI:CreateMain(Options)
 					        CursorPoint:Disconnect()
 					        CursorPoint = nil
 				        end
-					end)
+					end)]]
 					
 					-- Manage the Amount TextBox
 					local allowed
@@ -998,38 +1007,48 @@ function HexUI:CreateMain(Options)
             			if not allowed[text] and not tonumber(text) then
             				Interactables.Amount.Text = text:sub(1, #text - 1)
             			elseif not allowed[text] then
-            				if tonumber(text) > Max then
+            				--[[if tonumber(text) > Max then
             				    Interactables.Amount.Text = Max
             				elseif tonumber(text) < Min then
             				    Interactables.Amount.Text = Min
-            				end
+            				    Interactables.Amount.CursorPosition = #Interactables.Amount.Text + 1
+            				end]]
             				
             				if not Options.precise and IsADecimal(tonumber(Interactables.Amount.Text)) then
             				    Interactables.Amount.Text = text:sub(1, #text - 1)
             				end
             				
-            				if #Interactables.Amount.Text > #tostring(Min) + 2 then
+            				--[[if #Interactables.Amount.Text > #tostring(Max) + 2 then
             				    Interactables.Amount.Text = text:sub(1, #text - 1)
-            				end
+            				end]]
             				
             				LastNumber = tonumber(Interactables.Amount.Text)
             				if Callback then
 								Callback(tonumber(Interactables.Amount.Text))
             				end
 						    
-            				local s = (tonumber(Interactables.Amount.Text) - Min) / (Max - Min)
-            				TS:Create(Interactables.SliderInner, TweenInfo.new(0.05), {
-							    Size = UDim2.new(s, 0, 0, 8)
-    						}):Play()
-    						spawn(function()
-    						    wait()
-    						    updatepercent()
-    						end)
+						    if tonumber(text) > Max or tonumber(text) < Min then
+						        return
+                            else
+                				local s = (tonumber(Interactables.Amount.Text) - Min) / (Max - Min)
+                				TS:Create(Interactables.SliderInner, TweenInfo.new(0.05), {
+    							    Size = UDim2.new(s, 0, 0, 8)
+        						}):Play()
+        						spawn(function()
+        						    wait()
+        						    updatepercent()
+                                end)
+    						end
             			end
 					end)
         		    
                     Interactables.Amount.FocusLost:Connect(function()
-                        if Interactables.Amount.Text == "" then
+                        if tonumber(Interactables.Amount.Text) > Max then
+            			    Interactables.Amount.Text = Max
+            			elseif tonumber(Interactables.Amount.Text) < Min then
+            			    Interactables.Amount.Text = Min
+            			    --Interactables.Amount.CursorPosition = #Interactables.Amount.Text + 1
+                        elseif Interactables.Amount.Text == "" then
                             Interactables.Amount.Text = LastNumber
                         end
                     end)
@@ -1104,7 +1123,7 @@ function HexUI:CreateMain(Options)
 							Size = UDim2.new(0.982, 0, 0, 30),
 							ImageTransparency = 1,
 							Image = "rbxassetid://9772649226",
-							ImageColor3 = Color3.fromRGB(20,20,20),
+							ImageColor3 = Color3.fromRGB(9,9,9),
 							ScaleType = Enum.ScaleType.Slice,
 							SliceCenter = Rect.new(100, 100, 100, 100),
 							SliceScale = 0.040,
@@ -1121,7 +1140,7 @@ function HexUI:CreateMain(Options)
 							Size = UDim2.new(0.915, 0, 0, 30),
 							AutoButtonColor = false,
 							Image = "rbxassetid://9772649226",
-							ImageColor3 = Color3.fromRGB(20,20,20),
+							ImageColor3 = Color3.fromRGB(9,9,9),
 							ScaleType = Enum.ScaleType.Slice,
 							SliceCenter = Rect.new(100, 100, 100, 100),
 							SliceScale = 0.040,
@@ -1167,7 +1186,7 @@ function HexUI:CreateMain(Options)
 							Size = UDim2.new(1, 0, 0, 120),
 							ZIndex = 2,
 							Image = "rbxassetid://9772649226",
-							ImageColor3 = Color3.fromRGB(15,15,15),
+							ImageColor3 = Color3.fromRGB(0,0,0),
 							ScaleType = Enum.ScaleType.Slice,
 							SliceCenter = Rect.new(100, 100, 100, 100),
 							SliceScale = 0.040,
@@ -1233,7 +1252,7 @@ function HexUI:CreateMain(Options)
 									ZIndex = 2,
 									AutoButtonColor = false,
 									Image = "rbxassetid://9772649226",
-									ImageColor3 = Color3.fromRGB(20,20,20),
+									ImageColor3 = Color3.fromRGB(9,9,9),
 									ScaleType = Enum.ScaleType.Slice,
 									SliceCenter = Rect.new(100, 100, 100, 100),
 									SliceScale = 0.040,
@@ -1445,7 +1464,7 @@ function HexUI:CreateMain(Options)
 							Size = UDim2.new(0.982, 0, 0, 30),
 							ImageTransparency = 1,
 							Image = "rbxassetid://9772649226",
-							ImageColor3 = Color3.fromRGB(20,20,20),
+							ImageColor3 = Color3.fromRGB(9,9,9),
 							ScaleType = Enum.ScaleType.Slice,
 							SliceCenter = Rect.new(100, 100, 100, 100),
 							SliceScale = 0.040,
@@ -1462,7 +1481,7 @@ function HexUI:CreateMain(Options)
 							Size = UDim2.new(0.915, 0, 0, 30),
 							AutoButtonColor = false,
 							Image = "rbxassetid://9772649226",
-							ImageColor3 = Color3.fromRGB(20,20,20),
+							ImageColor3 = Color3.fromRGB(9,9,9),
 							ScaleType = Enum.ScaleType.Slice,
 							SliceCenter = Rect.new(100, 100, 100, 100),
 							SliceScale = 0.040,
@@ -1492,7 +1511,7 @@ function HexUI:CreateMain(Options)
 							Size = UDim2.new(0.8, 0, 1, 0),
 							ImageTransparency = 1,
 							Image = "rbxassetid://9772649226",
-							ImageColor3 = Color3.fromRGB(15,15,15),
+							ImageColor3 = Color3.fromRGB(0,0,0),
 							ScaleType = Enum.ScaleType.Slice,
 							SliceCenter = Rect.new(100, 100, 100, 100),
 							SliceScale = 0.040,
@@ -1500,7 +1519,7 @@ function HexUI:CreateMain(Options)
 
 						Interactables.selected = HexUI:Create("TextBox", {
 							Active = false,
-							BackgroundColor3 = Color3.fromRGB(15,15,15),
+							BackgroundColor3 = Color3.fromRGB(0,0,0),
 							BackgroundTransparency = 1.000,
 							BorderSizePixel = 0,
 							Position = UDim2.new(0, 0, 0.14, 0),
@@ -1527,7 +1546,7 @@ function HexUI:CreateMain(Options)
 							Size = UDim2.new(1, 0, 1, 0),
 							ImageTransparency = 1,
 							Image = "",
-							ImageColor3 = Color3.fromRGB(15,15,15),
+							ImageColor3 = Color3.fromRGB(0,0,0),
 							ScaleType = Enum.ScaleType.Slice,
 							SliceCenter = Rect.new(100, 100, 100, 100),
 							SliceScale = 0.040,
@@ -1543,7 +1562,7 @@ function HexUI:CreateMain(Options)
 							Size = UDim2.new(1, 0, 0, 120),
 							ZIndex = 2,
 							Image = "rbxassetid://9772649226",
-							ImageColor3 = Color3.fromRGB(15,15,15),
+							ImageColor3 = Color3.fromRGB(0,0,0),
 							ScaleType = Enum.ScaleType.Slice,
 							SliceCenter = Rect.new(100, 100, 100, 100),
 							SliceScale = 0.040,
@@ -1612,7 +1631,7 @@ function HexUI:CreateMain(Options)
 									ZIndex = 2,
 									AutoButtonColor = false,
 									Image = "rbxassetid://9772649226",
-									ImageColor3 = Color3.fromRGB(20,20,20),
+									ImageColor3 = Color3.fromRGB(9,9,9),
 									ScaleType = Enum.ScaleType.Slice,
 									SliceCenter = Rect.new(100, 100, 100, 100),
 									SliceScale = 0.040,
@@ -1887,7 +1906,7 @@ function HexUI:CreateMain(Options)
 					
 					Interactables.ColorpickerObject = HexUI:Create("Frame", {
 						Name = Name,
-                        BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+                        BackgroundColor3 = Color3.fromRGB(0,0,0),
                         BackgroundTransparency = 1.000,
                         BorderSizePixel = 0,
                         Position = UDim2.new(0.0260000005, 0, 0.430000007, 0),
@@ -1900,7 +1919,7 @@ function HexUI:CreateMain(Options)
                         BorderSizePixel = 0,
                         Size = UDim2.new(1, 0, 1, 0),
                         Image = "rbxassetid://9772649226",
-                        ImageColor3 = Color3.fromRGB(20, 20, 20),
+                        ImageColor3 = Color3.fromRGB(9,9,9),
                         ScaleType = Enum.ScaleType.Slice,
                         SliceCenter = Rect.new(100, 100, 100, 100),
                         SliceScale = 0.040,
@@ -1935,7 +1954,7 @@ function HexUI:CreateMain(Options)
 					-- Make the Colorpicker GUI
 					Interactables.Colorpicker = HexUI:Create("Frame", {
 						Name = "Colorpicker",
-                        BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+                        BackgroundColor3 = Color3.fromRGB(0,0,0),
                         BackgroundTransparency = 1,
                         BorderSizePixel = 0,
                         ClipsDescendants = true,
@@ -1945,7 +1964,7 @@ function HexUI:CreateMain(Options)
 					})
 					Interactables.ColorpickerE = HexUI:Create("Frame", {
 						Name = "Colorpicker",
-                        BackgroundColor3 = Color3.fromRGB(15, 15, 15),
+                        BackgroundColor3 = Color3.fromRGB(0,0,0),
                         BorderSizePixel = 0,
                         ClipsDescendants = false,
                         Position = UDim2.new(0, 0, 0, 0),
@@ -1993,7 +2012,7 @@ function HexUI:CreateMain(Options)
 					})
 					Interactables.Done = HexUI:Create("TextButton", {
 						Name = "Done",
-                        BackgroundColor3 = Color3.fromRGB(25, 25, 25),
+                        BackgroundColor3 = Color3.fromRGB(10,10,10),
                         BorderSizePixel = 0,
                         Position = UDim2.new(0.0465116277, 0, 0.85221678, 0),
                         Size = UDim2.new(0.899999976, 0, 0.100000001, 0),
@@ -2006,7 +2025,7 @@ function HexUI:CreateMain(Options)
 					Interactables.UICorner2 = HexUI:Create("UICorner", {})
 					Interactables.G = HexUI:Create("TextBox", {
 						Name = "G",
-                        BackgroundColor3 = Color3.fromRGB(25, 25, 25),
+                        BackgroundColor3 = Color3.fromRGB(10,10,10),
                         BorderSizePixel = 0,
                         Position = UDim2.new(0.442000002, 0, 0.709999979, 0),
                         Size = UDim2.new(0, 31, 0, 25),
@@ -2029,7 +2048,7 @@ function HexUI:CreateMain(Options)
 					})
 					Interactables.R = HexUI:Create("TextBox", {
 						Name = "R",
-                        BackgroundColor3 = Color3.fromRGB(25, 25, 25),
+                        BackgroundColor3 = Color3.fromRGB(10,10,10),
                         BorderSizePixel = 0,
                         Position = UDim2.new(0.149000004, 0, 0.709999979, 0),
                         Size = UDim2.new(0, 30, 0, 25),
@@ -2052,7 +2071,7 @@ function HexUI:CreateMain(Options)
 					})
 					Interactables.B = HexUI:Create("TextBox", {
 						Name = "B",
-                        BackgroundColor3 = Color3.fromRGB(25, 25, 25),
+                        BackgroundColor3 = Color3.fromRGB(10,10,10),
                         BorderSizePixel = 0,
                         Position = UDim2.new(0.74000001, 0, 0.709999979, 0),
                         Size = UDim2.new(0, 30, 0, 25),
