@@ -682,10 +682,10 @@ function HexUI:CreateMain(Options)
                 	    Interactables.Label.Text = Name
                 	end
                     
-                    function Interactables.SetText(NewText)
-                        if #NewText <= 100 then
-				print(NewText)
-                            Interactables.Label.Text = NewText
+                    function Interactables.SetText(Text)
+                        if #Text <= 100 then
+				print(Text)
+                            Interactables.Label.Text = tostring(Text)
                         end
                     end
                     
