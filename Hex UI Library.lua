@@ -684,6 +684,7 @@ function HexUI:CreateMain(Options)
                     
                     function Interactables.SetText(Text)
                         if #Text <= 100 then
+				print(Text)
                             Interactables.Label.Text = Text
                         end
                     end
