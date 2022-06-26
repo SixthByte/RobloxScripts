@@ -678,15 +678,11 @@ function HexUI:CreateMain(Options)
                     	TextXAlignment = Enum.TextXAlignment.Left,
                 	})
                 	
-                	if #Name <= 100 then
-                	    Interactables.Label.Text = Name
-                	end
+			Interactables.Label.Text = Name
                     
-                    function Interactables.SetText(NewText)
-                        if #NewText <= 100 then
-				print(NewText)
-                            Interactables.Label.Text = tostring(NewText)
-                        end
+                    function Interactables.SetLabelText(Text)
+			print(Text)
+                        Interactables.Label.Text = tostring(Text)
                     end
                     
                     Category.Container.CanvasSize = Category.Container.CanvasSize + UDim2.new(0,0,0,41)
