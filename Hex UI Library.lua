@@ -680,7 +680,7 @@ function HexUI:CreateMain(Options)
                 	
 			Interactables.Label.Text = Name
                     
-                    function Interactables.SetLabelText(Text)
+                    function Interactables.SetText(Text)
 			print(Text)
                         Interactables.Label.Text = tostring(Text)
                     end
